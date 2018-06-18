@@ -1751,8 +1751,10 @@ class FTSServiceNew(config: Config, esClasspathYaml: String)
           bulkRequest.add(
             client
               .prepareDelete(index, "infoclone", uuid)
+/*
               .setVersionType(VersionType.FORCE)
               .setVersion(1L)
+*/
           )
       }
 
