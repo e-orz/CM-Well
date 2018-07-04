@@ -929,7 +929,7 @@ class ImpStream(partition: Int,
 
         partitionIndexResult.out(1) ~> mergedCommandToKafkaRecord ~> mergeKafkaRecords.in(1)
 
-        mergeKafkaRecords.out ~> publishIndexCommandsFlow ~> mergeCompletedOffsets.in(3)
+        mergeKafkaRecords.out ~> publishIndexCommandsFlow ~> add persist to cas here  ~> mergeCompletedOffsets.in(3)
 
         mergeCompletedOffsets.out ~> commitOffsets
 
