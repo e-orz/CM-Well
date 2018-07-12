@@ -375,12 +375,16 @@ class ImpStream(partition: Int,
             val ini: (IndexCommand, Option[DateTime]) = IndexNewInfotonCommand(i.uuid, true, i.path, Some(i), i.indexName,
               trackingIds.map(StatusTracking(_, 1))) -> Some(i.lastModified)
             if (previous.isEmpty) {
+              logger.info(s"Eli extractIndexCommands: in 'previous.isEmpty' for infoton $i and previous $previous")
               Future.successful(List(BGMessage(offsets, Seq(ini))))
             } else if(previous.get.isSameAs(latest)) {
               if(!isRecoveryRequired) {
                 logger.warn(s"Previous [${previous.get.uuid}] isSameAs Latest but recoveryMode is off, this should only happen to parent Infotons.")
+                logger.info(s"Eli extractIndexCommands: in 'isSameAs(latest) & !isRecoveryRequired' for infoton $i and previous $previous")
                 Future.successful(List(BGMessage(offsets, Seq(ini))))
               } else {
+                logger.info(s"Eli extractIndexCommands: in 'else (previous is not empty & isSameAs(latest)) and isRecoveryRequired' " +
+                  s"for infoton $i and previous $previous")
                 // this case is when we're replaying persist command which was not indexed at all (due to error of some kind)
                 val previousTimestamp = previous.get.lastModified.getMillis
                 irwService.historyNeighbourhood(previous.get.path, previousTimestamp,
@@ -390,10 +394,14 @@ class ImpStream(partition: Int,
                     IndexNewInfotonCommand(i.uuid, true, i.path, Some(i), i.indexName, statusTracking) -> Some(i.lastModified)
                   val oldUuidOpt = previousAndOneBeforeThat.find(_._1 != previous.get.lastModified.getMillis).map(_._2)
                   oldUuidOpt.fold{
+                    logger.info(s"Eli extractIndexCommands: in 'no old uuid found' for infoton $i and previous $previous")
                     Future.successful(List(BGMessage(offsets, Seq(indexNewInfoton))))
                   }{ oldUuid =>
+                    logger.info(s"Eli extractIndexCommands: in 'old uuid [$oldUuid] found' for infoton $i and previous $previous")
                     irwService.readUUIDAsync(oldUuid, ConsistencyLevel.QUORUM, dontFetchPayload = true).map {
                       case FullBox(oldInfoton) =>
+                        logger.info(s"Eli extractIndexCommands: in 'old uuid [$oldUuid] found - in FullBox' " +
+                          s"for infoton $i and previous $previous. offsets are [${offsets.mkString(",")}]")
                         val statusTracking = trackingIds.map(StatusTracking(_, 2))
                         val indexNewInfoton: (IndexCommand, Option[DateTime]) =
                           IndexNewInfotonCommand(i.uuid, true, i.path, Some(i), i.indexName, statusTracking) -> Some(i.lastModified)
@@ -422,6 +430,7 @@ class ImpStream(partition: Int,
                 }
               }
             } else {
+              logger.info(s"Eli extractIndexCommands: in 'else (previous is not empty & !isSameAs(latest))' for infoton $i and previous $previous")
               val statusTracking = trackingIds.map(StatusTracking(_, 2))
               val indexNewInfoton: (IndexCommand, Option[DateTime]) = IndexNewInfotonCommand(i.uuid, true, i.path, Some(i), i.indexName, statusTracking) ->
                 Some(i.lastModified)
