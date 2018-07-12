@@ -41,8 +41,8 @@ object OffsetUtils extends LazyLogging {
         val offsets = allOffsets.filter(o => o.offset >= startingOffset)
         val offsetsPriority = allOffsetsPriority.filter(o => o.offset >= startingOffsetPriority)
 
-        logger.debug(s"commit offset sink of $streamId: offsets: $offsets")
-        logger.debug(s"commit offset sink of $streamId: priority offsets: $offsetsPriority")
+        logger.info(s"commit offset sink of $streamId: offsets: $offsets")
+        logger.info(s"commit offset sink of $streamId: priority offsets: $offsetsPriority")
         val (offsetToPersist, offsetPriorityToPersist) = doneOffsets
           .synchronized { // until a suitable concurrent collection is found
             val offsetToPersist = if (offsets.nonEmpty) {
@@ -63,7 +63,7 @@ object OffsetUtils extends LazyLogging {
               }
 
               if (prev > lastOffsetPersisted) {
-                logger.debug(s"commit offset sink of $streamId: prev: $prev is greater than lastOffsetPersisted: $lastOffsetPersisted")
+                logger.info(s"commit offset sink of $streamId: prev: $prev is greater than lastOffsetPersisted: $lastOffsetPersisted")
                 lastOffsetPersisted = prev
                 Some(prev)
               } else None
@@ -88,7 +88,7 @@ object OffsetUtils extends LazyLogging {
               }
 
               if (prevPriority > lastOffsetPersistedPriority) {
-                logger.debug(s"commit offset sink of $streamId: prevPriority: $prevPriority is greater than " +
+                logger.info(s"commit offset sink of $streamId: prevPriority: $prevPriority is greater than " +
                   s"lastOffsetPersistedPriority: $lastOffsetPersistedPriority")
                 lastOffsetPersistedPriority = prevPriority
                 Some(prevPriority)
@@ -108,12 +108,12 @@ object OffsetUtils extends LazyLogging {
 
   def mergeOffsets(streamId: String, doneOffsets: java.util.TreeSet[Offset],
                    newOffsets: Seq[Offset]) = {
-    logger.debug(
+    logger.info(
       s"commit offset sink of $streamId: merging doneOffsets:\n $doneOffsets \n with newOffsets:\n $newOffsets"
     )
     val (completedOffsets, partialOffsets) =
       newOffsets.partition(_.isInstanceOf[CompleteOffset])
-    logger.debug(
+    logger.info(
       s"commit offset sink of $streamId: completedOffsests:\n $completedOffsets \n partialOffsets:\n$partialOffsets"
     )
     doneOffsets.addAll(completedOffsets.asJava)
