@@ -15,6 +15,7 @@
 package cmwell.operations.modifier
 
 import cmwell.driver.{Dao, DaoExecution}
+import cmwell.fts.FTSServiceNew
 import cmwell.util.concurrent.SimpleScheduler
 import com.datastax.driver.core.{ConsistencyLevel, PreparedStatement, ResultSet}
 
@@ -36,6 +37,9 @@ trait ModifierOperation {
 
   def main(args: Array[String]): Unit = {
     val conf = new Conf(args)
+
+
+    val fts = FTSServiceNew()
 
     val dao = Dao(clusterName = "", "data2", conf.host())
     val pStmt = dao.getSession.prepare(statement)
