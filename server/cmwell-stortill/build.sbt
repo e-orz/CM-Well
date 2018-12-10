@@ -10,8 +10,9 @@ libraryDependencies ++= {
 }
 
 packMain := Map(
-  "addProtocol"    -> "cmwell.operations.modifier.AddProtocolField",
-  "verifyProtocol" -> "cmwell.operations.modifier.VerifyProtocolField",
+  "addProtocol"          -> "cmwell.operations.modifier.AddProtocolField",
+  "verifyProtocol"       -> "cmwell.operations.modifier.VerifyProtocolField",
+  "addProtocolToElastic" -> "cmwell.operations.modifier.AddProtocolFieldToEs"
 )
 
 fullTest := (test in Test).value
