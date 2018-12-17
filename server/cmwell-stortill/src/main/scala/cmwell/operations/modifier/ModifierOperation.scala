@@ -35,52 +35,10 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.{Duration, DurationInt}
 import org.rogach.scallop.ScallopConf
 
-import scala.concurrent.{ExecutionContext, Promise}
+import scala.collection.mutable.ListBuffer
+import scala.concurrent.{ExecutionContext, Future, Promise}
 
 //scalastyle:off
-//trait ModifierOperation {
-//  type UUID = String
-//
-//  class Conf(arguments: Seq[String]) extends ScallopConf(arguments) {
-//    val host = opt[String]("host", required = true)
-//    verify()
-//  }
-//
-//  val statement: String
-//  val task: (ResultSet, UUID) => Unit = (_,_) => ()
-//
-//
-//  def main(args: Array[String]): Unit = {
-//    val conf = new Conf(args)
-//
-//    val dao = Dao(clusterName = "", "data2", conf.host())
-//    val pStmt = dao.getSession.prepare(statement)
-//    val executor = new CasExecutor(pStmt)(dao)
-//
-//    var c = 0
-//    val timer = SimpleScheduler.scheduleAtFixedRate(0.second, 500.millis) { println(s" >>> $c items processed") }
-//    println("\n\n >>> Executing...")
-//    scala.io.Source.stdin.getLines().foreach { uuid =>
-//      executor.exec(uuid).map(task(_,uuid))
-//      c += 1
-//    }
-//
-//    timer.cancel()
-//    println(" >>> Done, shutting down connection...\n")
-//    dao.shutdown()
-//  }
-//}
-//
-//object AddProtocolField extends ModifierOperation {
-//  override val statement = "INSERT INTO data2.infoton (uuid, quad, field, value) VALUES (?, 'cmwell://meta/sys', 'protocol', 'https');"
-//}
-//
-//object VerifyProtocolField extends ModifierOperation {
-//  override val statement = "SELECT value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys' AND field='protocol';"
-//  override val task: (ResultSet, String) => Unit = (rs, uuid) =>
-//    if(rs.isExhausted || rs.one().getString("value")!="https") println(s"[OOPS] $uuid was not verified!")
-//}
-
 object AddProtocolField extends StdInIterator with EsFutureHelpers {
   class Conf(arguments: Seq[String]) extends ScallopConf(arguments) {
     val host = opt[String]("host", required = true)
@@ -163,7 +121,6 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
 
       while(!rs.isExhausted) {
         val row = rs.one()
-//        println(s" >>> [DEBUG][ROW] $row")
         val field = row.get("field", classOf[String])
         if(field == "indexName") indexName = row.get("value", classOf[String])
         if(field == "protocol") protocol = Some(row.get("value", classOf[String]))
@@ -196,6 +153,39 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
     esClient.close()
     sys.exit
   }
+}
+
+object FixType extends StdInIterator {
+  class Conf(arguments: Seq[String]) extends ScallopConf(arguments) {
+    val host = opt[String]("host", required = true)
+    verify()
+  }
+
+  def main(args: Array[String]): Unit = {
+    val dao = Dao(clusterName = "", "data2", new Conf(args).host())
+    val selectExecutor = new CasExecutor(dao.getSession.prepare("SELECT value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys' AND field='type';"))(dao)
+    val deleteExecutor = new CasExecutor(dao.getSession.prepare("DELETE FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys' AND field='type' AND value='o';"))(dao)
+
+    def getValues(rs: ResultSet): Set[String] = {
+      val lb = ListBuffer[String]()
+      while(!rs.isExhausted) lb += rs.one().get("value", classOf[String])
+      lb.result().toSet
+    }
+
+    val expected = Set("d","o")
+
+    println("\n\n >>> Executing...")
+    iterateStdinShowingProgress { uuid =>
+      selectExecutor.exec(uuid).map(getValues).flatMap { existingValues =>
+        println(s" >>> [DEBUG] type: [${existingValues.mkString(",")}]")
+        if(existingValues == expected) deleteExecutor.exec(uuid) else Future.successful(())
+      }
+    }
+
+    println(" >>> Done, waiting 1 minute before closing connections...\n")
+    Thread.sleep(60000)
+    dao.shutdown()
+    sys.exit  }
 }
 
 trait StdInIterator {
