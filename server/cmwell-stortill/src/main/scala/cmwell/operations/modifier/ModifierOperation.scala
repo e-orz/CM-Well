@@ -177,7 +177,6 @@ object FixType extends StdInIterator {
     println("\n\n >>> Executing...")
     iterateStdinShowingProgress { uuid =>
       selectExecutor.exec(uuid).map(getValues).flatMap { existingValues =>
-        println(s" >>> [DEBUG] type: [${existingValues.mkString(",")}]")
         if(existingValues == expected) deleteExecutor.exec(uuid) else Future.successful(())
       }
     }
