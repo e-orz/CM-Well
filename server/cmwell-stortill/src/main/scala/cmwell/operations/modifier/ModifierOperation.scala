@@ -37,6 +37,7 @@ import org.rogach.scallop.ScallopConf
 
 import scala.collection.mutable.ListBuffer
 import scala.concurrent.{ExecutionContext, Future, Promise}
+import scala.util.{Failure, Success}
 
 //scalastyle:off
 object AddProtocolField extends StdInIterator with EsFutureHelpers {
@@ -71,14 +72,17 @@ object AddProtocolField extends StdInIterator with EsFutureHelpers {
       esClient.prepareBulk().add(new UpdateRequest(indexName, "infoclone", uuid).doc(s"""{"system":{"protocol": "https"}}"""))
 
 
-    println("\n\n >>> Executing...")
+    Console.err.println("\n\n >>> Executing...")
     iterateStdinShowingProgress { uuid =>
       insertExecutor.exec(uuid).zip(selectExecutor.exec(uuid).map(getString)).flatMap { case (_, indexName) =>
         val request = esRequest(indexName, uuid)
         injectFuture[BulkResponse](request.execute)
+      }.onComplete {
+        case Success(_) => println(s" >>> $uuid OK")
+        case Failure(_) => println(s" >>> $uuid ERROR")
       }
     }
-    println(" >>> Done, closing connections in 16 seconds from now...\n")
+    Console.err.println(" >>> Done, closing connections in 16 seconds from now...\n")
     Thread.sleep(16000)
     dao.shutdown()
     esClient.close()
@@ -131,7 +135,7 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
 
     def esRequest(indexName: String, uuid: String) = esClient.prepareGet(indexName, "infoclone", uuid)
 
-    println("\n\n >>> Executing...")
+    Console.err.println("\n\n >>> Executing...")
     iterateStdinShowingProgress { uuid =>
       selectExecutor.exec(uuid).map(getFields).flatMap { fetchedFields =>
         val protocolInCas = fetchedFields.protocol
@@ -147,7 +151,7 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
       }.recover { case _ => println(s" >>> [VERIFICATION] $uuid FAILED") }
     }
 
-    println(" >>> Done, waiting 1 minute before closing connections...\n")
+    Console.err.println(" >>> Done, waiting 1 minute before closing connections...\n")
     Thread.sleep(60000)
     dao.shutdown()
     esClient.close()
@@ -174,14 +178,14 @@ object FixType extends StdInIterator {
 
     val expected = Set("d","o")
 
-    println("\n\n >>> Executing...")
+    Console.err.println("\n\n >>> Executing...")
     iterateStdinShowingProgress { uuid =>
       selectExecutor.exec(uuid).map(getValues).flatMap { existingValues =>
         if(existingValues == expected) deleteExecutor.exec(uuid) else Future.successful(())
       }
     }
 
-    println(" >>> Done, waiting 1 minute before closing connections...\n")
+    Console.err.println(" >>> Done, waiting 1 minute before closing connections...\n")
     Thread.sleep(60000)
     dao.shutdown()
     sys.exit  }
@@ -194,14 +198,14 @@ trait StdInIterator {
   def iterateStdinShowingProgress(func: String => Any): Unit = {
     var c = 0
     val timer = SimpleScheduler.scheduleAtFixedRate(0.seconds, 500.millis) {
-      println(s" >>> $c items processed")
+      Console.err.println(s" >>> $c items processed")
     }
     scala.io.Source.stdin.getLines().foreach { uuid =>
       c += 1
       func(uuid)
     }
     timer.cancel()
-    println(s" >>> $c items processed")
+    Console.err.println(s" >>> $c items processed")
   }
 }
 
