@@ -14,7 +14,7 @@
   */
 package cmwell.operations.modifier
 
-import java.util.concurrent.{TimeUnit, TimeoutException}
+import java.util.concurrent.{Executors, TimeUnit, TimeoutException}
 
 import cmwell.driver.{Dao, DaoExecution}
 import cmwell.fts.FTSServiceNew
@@ -31,7 +31,6 @@ import org.elasticsearch.common.settings.ImmutableSettings
 import org.elasticsearch.common.transport.InetSocketTransportAddress
 import org.elasticsearch.index.VersionType
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.{Duration, DurationInt}
 import org.rogach.scallop.ScallopConf
 
@@ -44,11 +43,13 @@ object AddProtocolField extends StdInIterator with EsFutureHelpers {
   class Conf(arguments: Seq[String]) extends ScallopConf(arguments) {
     val host = opt[String]("host", required = true)
     val clusterName = opt[String]("cluster-name", required = true)
+    val j = opt[Int]("j", required = true)
     verify()
   }
 
   def main(args: Array[String]): Unit = {
     val conf = new Conf(args)
+    implicit val ec = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(conf.j()))
 
     val esClient = {
       val cluster: String = conf.clusterName()
@@ -81,7 +82,7 @@ object AddProtocolField extends StdInIterator with EsFutureHelpers {
         case Success(_) => println(s" >>> $uuid OK")
         case Failure(_) => println(s" >>> $uuid ERROR")
       }
-    }
+    }(ec)
     Console.err.println(" >>> Done, closing connections in 16 seconds from now...\n")
     Thread.sleep(16000)
     dao.shutdown()
@@ -94,13 +95,17 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
   class Conf(arguments: Seq[String]) extends ScallopConf(arguments) {
     val host = opt[String]("host", required = true)
     val clusterName = opt[String]("cluster-name", required = true)
+    val j = opt[Int]("j", required = true)
     verify()
   }
 
   case class FetchedFields(indexName: String, protocol: Option[String])
 
+
   def main(args: Array[String]): Unit = {
     val conf = new Conf(args)
+
+    implicit val ec = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(conf.j()))
 
     val esClient = {
       val cluster: String = conf.clusterName()
@@ -116,8 +121,6 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
 
     val dao = Dao(clusterName = "", "data2", conf.host())
     val selectExecutor = new CasExecutor(dao.getSession.prepare("SELECT field,value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys';"))(dao)
-
-
 
     def getFields(rs: ResultSet): FetchedFields = {
       var indexName: String = ""
@@ -149,7 +152,7 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
             println(s" >>> [VERIFICATION] $uuid $protocolInCas $protocolInEs")
         }.recover { case _ => println(s" >>> [VERIFICATION] $uuid FAILED") }
       }.recover { case _ => println(s" >>> [VERIFICATION] $uuid FAILED") }
-    }
+    }(ec)
 
     Console.err.println(" >>> Done, waiting 1 minute before closing connections...\n")
     Thread.sleep(60000)
@@ -162,11 +165,14 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
 object FixType extends StdInIterator {
   class Conf(arguments: Seq[String]) extends ScallopConf(arguments) {
     val host = opt[String]("host", required = true)
+    val j = opt[Int]("j", required = true)
     verify()
   }
 
   def main(args: Array[String]): Unit = {
-    val dao = Dao(clusterName = "", "data2", new Conf(args).host())
+    val conf = new Conf(args)
+    implicit val ec = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(conf.j()))
+    val dao = Dao(clusterName = "", "data2", conf.host())
     val selectExecutor = new CasExecutor(dao.getSession.prepare("SELECT value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys' AND field='type';"))(dao)
     val deleteExecutor = new CasExecutor(dao.getSession.prepare("DELETE FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys' AND field='type' AND value='o';"))(dao)
 
@@ -183,7 +189,7 @@ object FixType extends StdInIterator {
       selectExecutor.exec(uuid).map(getValues).flatMap { existingValues =>
         if(existingValues == expected) deleteExecutor.exec(uuid) else Future.successful(())
       }
-    }
+    }(ec)
 
     Console.err.println(" >>> Done, waiting 1 minute before closing connections...\n")
     Thread.sleep(60000)
@@ -195,11 +201,11 @@ trait StdInIterator {
   def iterateStdin(func: String => Any): Unit =
     scala.io.Source.stdin.getLines().foreach(func)
 
-  def iterateStdinShowingProgress(func: String => Any): Unit = {
+  def iterateStdinShowingProgress(func: String => Any)(implicit ec: ExecutionContext): Unit = {
     var c = 0
     val timer = SimpleScheduler.scheduleAtFixedRate(0.seconds, 500.millis) {
       Console.err.println(s" >>> $c items processed")
-    }
+    }(ec)
     scala.io.Source.stdin.getLines().foreach { uuid =>
       c += 1
       func(uuid)
