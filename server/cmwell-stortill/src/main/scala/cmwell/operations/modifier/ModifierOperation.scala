@@ -99,7 +99,7 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
     verify()
   }
 
-  case class FetchedFields(indexName: String, protocol: Option[String])
+//  case class FetchedFields(indexName: String, protocol: Option[String])
 
 
   def main(args: Array[String]): Unit = {
@@ -120,29 +120,40 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
     }
 
     val dao = Dao(clusterName = "", "data2", conf.host())
-    val selectExecutor = new CasExecutor(dao.getSession.prepare("SELECT field,value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys';"))(dao)
 
-    def getFields(rs: ResultSet): FetchedFields = {
-      var indexName: String = ""
-      var protocol: Option[String] = None
+//    val selectExecutor = new CasExecutor(dao.getSession.prepare("SELECT field,value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys';"))(dao)
+//
+//    def getFields(rs: ResultSet): FetchedFields = {
+//      var indexName: String = ""
+//      var protocol: Option[String] = None
+//
+//      while(!rs.isExhausted) {
+//        val row = rs.one()
+//        val field = row.get("field", classOf[String])
+//        if(field == "indexName") indexName = row.get("value", classOf[String])
+//        if(field == "protocol") protocol = Some(row.get("value", classOf[String]))
+//      }
+//
+//      FetchedFields(indexName, protocol)
+//    }
 
-      while(!rs.isExhausted) {
-        val row = rs.one()
-        val field = row.get("field", classOf[String])
-        if(field == "indexName") indexName = row.get("value", classOf[String])
-        if(field == "protocol") protocol = Some(row.get("value", classOf[String]))
-      }
+    val selectIndexNameExecutor = new CasExecutor(dao.getSession.prepare("SELECT value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys' AND field='indexName';"))(dao)
+    val selectProtocolExecutor = new CasExecutor(dao.getSession.prepare("SELECT value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys' AND field='protocol';"))(dao)
 
-      FetchedFields(indexName, protocol)
-    }
+    def getString(rs: ResultSet): String = rs.one().get(0, classOf[String])
+    def getStringOpt(rs: ResultSet): Option[String] = if(rs.isExhausted) None else Option(rs.one().get(0, classOf[String]))
 
     def esRequest(indexName: String, uuid: String) = esClient.prepareGet(indexName, "infoclone", uuid)
 
     Console.err.println("\n\n >>> Executing...")
     iterateStdinShowingProgress { uuid =>
-      selectExecutor.exec(uuid).map(getFields).flatMap { fetchedFields =>
-        val protocolInCas = fetchedFields.protocol
-        val request = esRequest(fetchedFields.indexName, uuid)
+//      selectExecutor.exec(uuid).map(getFields).flatMap { fetchedFields =>
+//        val protocolInCas = fetchedFields.protocol
+//        val request = esRequest(fetchedFields.indexName, uuid)
+
+      selectIndexNameExecutor.exec(uuid).map(getString).zip(selectProtocolExecutor.exec(uuid).map(getStringOpt)).flatMap { case (indexName,protocolInCas) =>
+        val request = esRequest(indexName, uuid)
+
         injectFuture[GetResponse](request.execute).map { esResp =>
           val protocolInEs = Option({
             val map = esResp.getSourceAsMap.get("system").asInstanceOf[java.util.Map[String,AnyRef]]
