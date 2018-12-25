@@ -80,7 +80,7 @@ object AddProtocolField extends StdInIterator with EsFutureHelpers {
         injectFuture[BulkResponse](request.execute)
       }.onComplete {
         case Success(_) => println(s" >>> $uuid OK")
-        case Failure(_) => println(s" >>> $uuid ERROR")
+        case Failure(t) => println(s" >>> $uuid ERROR: $t")
       }
     }(ec)
     Console.err.println(" >>> Done, closing connections in 16 seconds from now...\n")
