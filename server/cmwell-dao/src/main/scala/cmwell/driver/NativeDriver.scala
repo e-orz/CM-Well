@@ -38,11 +38,11 @@ trait Dao extends LazyLogging {
   def shutdown()
 }
 
-class NativeDriver(clusterName: String, keyspaceName: String, host: String = "127.0.0.1", maxConnections: Int = 10)
+class NativeDriver(clusterName: String, keyspaceName: String, host: String = "127.0.0.1", maxConnections: Int = 128)
     extends Dao {
 
   private val pools: PoolingOptions = new PoolingOptions();
-  pools.setNewConnectionThreshold(HostDistance.LOCAL, 128)
+  pools.setNewConnectionThreshold(HostDistance.LOCAL, maxConnections)
   // TODO: need understand what have been changed
   /*
   pools.setCoreConnectionsPerHost(HostDistance.LOCAL, maxConnections)
@@ -91,7 +91,7 @@ class NativeDriver(clusterName: String, keyspaceName: String, host: String = "12
 }
 
 object Dao {
-  def apply(clusterName: String, keyspaceName: String, host: String = "127.0.0.1", maxConnections: Int = 10) =
+  def apply(clusterName: String, keyspaceName: String, host: String = "127.0.0.1", maxConnections: Int = 128) =
     new NativeDriver(clusterName, keyspaceName, host, maxConnections)
 }
 

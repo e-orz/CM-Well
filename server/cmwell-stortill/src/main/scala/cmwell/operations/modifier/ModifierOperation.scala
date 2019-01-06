@@ -57,13 +57,19 @@ object AddProtocolField extends StdInIterator with EsFutureHelpers {
         .settingsBuilder()
         .put("cluster.name", cluster)
         .put("client.transport.sniff", true)
+        .put("transport.netty.worker_count", 3)
+        .put("transport.connections_per_node.recovery", 1)
+        .put("transport.connections_per_node.bulk", 1)
+        .put("transport.connections_per_node.reg", 2)
+        .put("transport.connections_per_node.state", 1)
+        .put("transport.connections_per_node.ping", 1)
         .build()
       val actualTransportAddress: String = conf.host()
       new TransportClient(esSettings)
         .addTransportAddress(new InetSocketTransportAddress(actualTransportAddress, 9301))
     }
 
-    val dao = Dao(clusterName = "", "data2", conf.host())
+    val dao = Dao(clusterName = "", "data2", conf.host(), conf.j())
     val insertExecutor = new CasExecutor(dao.getSession.prepare("INSERT INTO data2.infoton (uuid, quad, field, value) VALUES (?, 'cmwell://meta/sys', 'protocol', 'https');"))(dao)
     val selectExecutor = new CasExecutor(dao.getSession.prepare("SELECT value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys' AND field='indexName';"))(dao)
 
@@ -113,13 +119,19 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
         .settingsBuilder()
         .put("cluster.name", cluster)
         .put("client.transport.sniff", true)
+        .put("transport.netty.worker_count", 3)
+        .put("transport.connections_per_node.recovery", 1)
+        .put("transport.connections_per_node.bulk", 1)
+        .put("transport.connections_per_node.reg", 2)
+        .put("transport.connections_per_node.state", 1)
+        .put("transport.connections_per_node.ping", 1)
         .build()
       val actualTransportAddress: String = conf.host()
       new TransportClient(esSettings)
         .addTransportAddress(new InetSocketTransportAddress(actualTransportAddress, 9301))
     }
 
-    val dao = Dao(clusterName = "", "data2", conf.host())
+    val dao = Dao(clusterName = "", "data2", conf.host(), conf.j())
 
 //    val selectExecutor = new CasExecutor(dao.getSession.prepare("SELECT field,value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys';"))(dao)
 //
@@ -183,7 +195,7 @@ object FixType extends StdInIterator {
   def main(args: Array[String]): Unit = {
     val conf = new Conf(args)
     implicit val ec = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(conf.j()))
-    val dao = Dao(clusterName = "", "data2", conf.host())
+    val dao = Dao(clusterName = "", "data2", conf.host(), conf.j())
     val selectExecutor = new CasExecutor(dao.getSession.prepare("SELECT value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys' AND field='type';"))(dao)
     val deleteExecutor = new CasExecutor(dao.getSession.prepare("DELETE FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys' AND field='type' AND value='o';"))(dao)
 
