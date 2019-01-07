@@ -133,22 +133,6 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
 
     val dao = Dao(clusterName = "", "data2", conf.host(), conf.j())
 
-//    val selectExecutor = new CasExecutor(dao.getSession.prepare("SELECT field,value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys';"))(dao)
-//
-//    def getFields(rs: ResultSet): FetchedFields = {
-//      var indexName: String = ""
-//      var protocol: Option[String] = None
-//
-//      while(!rs.isExhausted) {
-//        val row = rs.one()
-//        val field = row.get("field", classOf[String])
-//        if(field == "indexName") indexName = row.get("value", classOf[String])
-//        if(field == "protocol") protocol = Some(row.get("value", classOf[String]))
-//      }
-//
-//      FetchedFields(indexName, protocol)
-//    }
-
     val selectIndexNameExecutor = new CasExecutor(dao.getSession.prepare("SELECT value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys' AND field='indexName';"))(dao)
     val selectProtocolExecutor = new CasExecutor(dao.getSession.prepare("SELECT value FROM data2.infoton WHERE uuid=? AND quad='cmwell://meta/sys' AND field='protocol';"))(dao)
 
@@ -158,10 +142,7 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
     def esRequest(indexName: String, uuid: String) = esClient.prepareGet(indexName, "infoclone", uuid)
 
     Console.err.println("\n\n >>> Executing...")
-    iterateStdinShowingProgress { uuid =>
-//      selectExecutor.exec(uuid).map(getFields).flatMap { fetchedFields =>
-//        val protocolInCas = fetchedFields.protocol
-//        val request = esRequest(fetchedFields.indexName, uuid)
+    iterateStdinInChunksShowingProgress { uuid =>
 
       selectIndexNameExecutor.exec(uuid).map(getString).zip(selectProtocolExecutor.exec(uuid).map(getStringOpt)).flatMap { case (indexName,protocolInCas) =>
         val request = esRequest(indexName, uuid)
@@ -175,7 +156,7 @@ object VerifyProtocolField extends StdInIterator with EsFutureHelpers {
             println(s" >>> [VERIFICATION] $uuid $protocolInCas $protocolInEs")
         }.recover { case _ => println(s" >>> [VERIFICATION] $uuid FAILED") }
       }.recover { case _ => println(s" >>> [VERIFICATION] $uuid FAILED") }
-    }(ec)
+    }(conf.j())(ec)
 
     Console.err.println(" >>> Done, waiting 1 minute before closing connections...\n")
     Thread.sleep(60000)
@@ -235,6 +216,23 @@ trait StdInIterator {
     }
     timer.cancel()
     Console.err.println(s" >>> $c items processed")
+  }
+
+  def iterateStdinInChunksShowingProgress(func: String => Future[_])(chunkSize: Int)(implicit ec: ExecutionContext): Unit = {
+    var c = 0
+    val timer = SimpleScheduler.scheduleAtFixedRate(0.seconds, 500.millis) {
+      Console.err.println(s" >>> $c items processed")
+    }(ec)
+
+    val it = scala.io.Source.stdin.getLines().grouped(chunkSize)
+    def processChunk: Future[_] =
+      if(!it.hasNext) Future.successful(())
+      else Future.sequence(it.next().map { uuid => c += 1; func(uuid) }).flatMap(_ => processChunk)
+
+    processChunk.onComplete { _ =>
+      timer.cancel()
+      Console.err.println(s" >>> $c items processed")
+    }
   }
 }
 
