@@ -21,7 +21,7 @@ import cmwell.fts.FTSServiceNew
 import cmwell.util.concurrent.SimpleScheduler
 import com.datastax.driver.core.{ConsistencyLevel, PreparedStatement, ResultSet}
 import com.typesafe.scalalogging.Logger
-import org.elasticsearch.action.bulk.BulkResponse
+import org.elasticsearch.action.bulk.{BulkRequestBuilder, BulkResponse}
 import org.elasticsearch.action.get.GetResponse
 import org.elasticsearch.action.{ActionListener, ActionRequest}
 import org.elasticsearch.action.update.UpdateRequest
@@ -44,12 +44,17 @@ object AddProtocolField extends StdInIterator with EsFutureHelpers {
     val host = opt[String]("host", required = true)
     val clusterName = opt[String]("cluster-name", required = true)
     val j = opt[Int]("j", required = true)
+    val retryDelay = opt[Int]("retry-delay-millis", required = false, default = Some(500))
+    val maxRetries = opt[Int]("max-retries", required = false, default = Some(3))
     verify()
   }
 
   def main(args: Array[String]): Unit = {
     val conf = new Conf(args)
     implicit val ec = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(conf.j()))
+
+    val retryDelay = conf.retryDelay().millis
+    val maxRetries = conf.maxRetries()
 
     val esClient = {
       val cluster: String = conf.clusterName()
@@ -79,11 +84,21 @@ object AddProtocolField extends StdInIterator with EsFutureHelpers {
       esClient.prepareBulk().add(new UpdateRequest(indexName, "infoclone", uuid).doc(s"""{"system":{"protocol": "https"}}"""))
 
 
+    def esClientExecWithRetries(uuid: String, request: BulkRequestBuilder, retry: Int = 1): Future[BulkResponse] = {
+      injectFuture[BulkResponse](request.execute).flatMap {
+        case br if !br.hasFailures => Future.successful(br)
+        case _ if retry < maxRetries => SimpleScheduler.scheduleFuture(retryDelay) {
+            esClientExecWithRetries(uuid, request, retry + 1)
+        }
+        case br => Future.failed(new RuntimeException(s"After $maxRetries retries: " + br.buildFailureMessage()))
+      }
+    }
+
     Console.err.println("\n\n >>> Executing...")
     iterateStdinShowingProgress { uuid =>
       insertExecutor.exec(uuid).zip(selectExecutor.exec(uuid).map(getString)).flatMap { case (_, indexName) =>
         val request = esRequest(indexName, uuid)
-        injectFuture[BulkResponse](request.execute)
+        esClientExecWithRetries(uuid, request)
       }.onComplete {
         case Success(_) => println(s" >>> $uuid OK")
         case Failure(t) => println(s" >>> $uuid ERROR: $t")
