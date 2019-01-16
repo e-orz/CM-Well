@@ -108,6 +108,7 @@ object AddProtocolField extends StdInIterator with EsFutureHelpers {
     Thread.sleep(16000)
     dao.shutdown()
     esClient.close()
+    sys.exit(0)
   }
 }
 
