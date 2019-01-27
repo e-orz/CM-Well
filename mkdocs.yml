@@ -1,0 +1,36 @@
+site_name: CM-Well
+repo_url: https://github.com/CM-Well/CM-Well
+#site_url: https://example.com/foo333/
+site_description: CM-Well Documentation
+site_author: CM-Well contibutors
+#remote_branch
+#remote_name
+copyright: CM-Well copyright
+#You want to set it to true after the documentation will stabilize (exit on warnings)
+#strict: true
+nav:
+    - Home: index.md
+    - Bug Tracker: https://github.com/CM-Well/CM-Well/issues
+    - About:
+        - about.md
+    - API reference:
+        - about.md
+theme: 
+  name: 'material'
+  #logo: 'images/logo.svg' logo can be either image or icon!
+  #favicon: 'assets/images/favicon.ico'
+#  feature:
+#    tabs: true - Do we want tabs?
+  #font: false - to be complaint with GDPR (but will change the fonts. use custom template for the fonts section for that)
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/CM-Well/CM-Well'
+#    - type: 'gitter'
+#      link: 'https://gitter.im/CM-Well/CM-Well' - I couldn't get the gitter icon to be inversed colors
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true  
