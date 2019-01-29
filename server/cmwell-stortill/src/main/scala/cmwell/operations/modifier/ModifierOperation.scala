@@ -95,20 +95,21 @@ object AddProtocolField extends StdInIterator with EsFutureHelpers {
     }
 
     Console.err.println("\n\n >>> Executing...")
-    iterateStdinShowingProgress { uuid =>
-      insertExecutor.exec(uuid).zip(selectExecutor.exec(uuid).map(getString)).flatMap { case (_, indexName) =>
+    iterateStdinInChunksShowingProgress { uuid =>
+      insertExecutor.exec(uuid).zip(selectExecutor.exec(uuid).map(getString)).flatMap { case (_,  indexName) =>
         val request = esRequest(indexName, uuid)
         esClientExecWithRetries(uuid, request)
-      }.onComplete {
+      }.andThen {
         case Success(_) => println(s" >>> $uuid OK")
         case Failure(t) => println(s" >>> $uuid ERROR: $t")
       }
-    }(ec)
-    Console.err.println(" >>> Done, closing connections in 16 seconds from now...\n")
-    Thread.sleep(16000)
-    dao.shutdown()
-    esClient.close()
-    sys.exit(0)
+    }(conf.j())(ec).onComplete { _ =>
+      Console.err.println(" >>> Done, closing connections in 16 seconds from now...\n")
+      Thread.sleep(16000)
+      dao.shutdown()
+      esClient.close()
+      sys.exit(0)
+    }
   }
 }
 
@@ -234,7 +235,7 @@ trait StdInIterator {
     Console.err.println(s" >>> $c items processed")
   }
 
-  def iterateStdinInChunksShowingProgress(func: String => Future[_])(chunkSize: Int)(implicit ec: ExecutionContext): Unit = {
+  def iterateStdinInChunksShowingProgress(func: String => Future[_])(chunkSize: Int)(implicit ec: ExecutionContext): Future[_] = {
     var c = 0
     val timer = SimpleScheduler.scheduleAtFixedRate(0.seconds, 500.millis) {
       Console.err.println(s" >>> $c items processed")
@@ -249,6 +250,7 @@ trait StdInIterator {
       timer.cancel()
       Console.err.println(s" >>> $c items processed")
     }
+    processChunk
   }
 }
 
