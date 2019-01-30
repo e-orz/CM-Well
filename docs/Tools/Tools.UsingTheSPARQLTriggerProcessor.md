@@ -1,4 +1,4 @@
-# Using the SPARQL Triggered Processor #
+# Using the SPARQL Triggered Processor
 
 ----
 
@@ -6,7 +6,7 @@
 
 ----
 
-## What is the SPARQL Triggered Processor? ##
+## What is the SPARQL Triggered Processor?
 
 The SPARQL Triggered Processor is a CM-Well agent for running SPARQL queries and constructs periodically, for the purposes of creating materialized views of CM-Well infotons. A materialized view is a "flattened" version of data whose original source included high levels of pointer redirection before arriving at data. (The materialized view may also be enriched with data from other infotons.)
 
@@ -19,7 +19,7 @@ You define the SPARQL Triggered Processor's input and output by editing a [YAML-
 See [Using SPARQL on CM-Well Infotons](DevGuide.UsingSPARQLOnCM-WellInfotons.md) to learn more about SPARQL queries.
 
 <a name="config"></a>
-## Creating the YAML Configuration File ##
+## Creating the YAML Configuration File
 
 The SPARQL Triggered Processor's configuration file is in YAML format. It contains:
 
@@ -114,7 +114,7 @@ Here is a (truncated) example of the YAML configuration file:
 
     ...
 ```
-### Querying for Multiple Parameters in the sparqlToRoot Query ###
+### Querying for Multiple Parameters in the sparqlToRoot Query
 
 In the **sparqlToRoot** SPARQL query defined in the STP sensor configuration, you can query for multiple parameters in the SELECT command. STP forwards the [key, value] pairs yielded by the **sparqlToRoot** query to the **_sp** materialization invocation as parameters.
 
@@ -130,9 +130,9 @@ The **sparqlMaterializer** query might also include those variables in the body 
 
 	… WHERE { ?cmpUri ont:locatedIn %country% ; ont:speaksLanguage %language% . } ...
 
-## Controlling the SPARQL Triggered Processor Job ##
+## Controlling the SPARQL Triggered Processor Job
 
-### Activating and Deactivating the Job ###
+### Activating and Deactivating the Job
 
 When you have created the YAML configuration file and are ready to apply it, you upload it to CM-Well at `meta/sys/agents/sparql/<configName>`, where the containing folder name ```\<configName\>``` is a unique name that describes your configuration.
 
@@ -150,7 +150,7 @@ If you want to stop the job and delete its configuration permanently, delete the
 
 >**Note:** The job will end gracefully even without pausing it before deleting the configuration location.
 
-### Pausing and Restarting the Job ###
+### Pausing and Restarting the Job
 
 You can pause and restart the SPARQL job by changing a Boolean value under your configuration folder. If this flag doesn't exist, its default value is **true**.
 
@@ -170,7 +170,7 @@ To temporarily pause and restart the SPARQL job, you can toggle the value of thi
     <cmwell://meta/sys/agents/sparql/MyCompanyMaterializedView> <cmwell://meta/nn#active> \"true\"^^<http://www.w3.org/2001/XMLSchema#boolean> .
     "
 
-## The SPARQL Triggered Processor Monitoring Page ##
+## The SPARQL Triggered Processor Monitoring Page
 
 In the SPARQL Triggered Processor monitoring page, you can view the status and processing metrics of all SPARQL agent jobs. To see the monitoring page, browse to `proc/stp.md` on the CM-Well host machine.
 
@@ -186,7 +186,7 @@ Received Infotons | The number of changed infotons that the sensor detected
 Infoton Rate | The number of infotons that the sensor is processing per second.
 Statistics Updated | The time that the sensor made its latest update.
 
-## DEPRECATED: Downloading and Compiling CM-Well Data Tools ##
+## DEPRECATED: Downloading and Compiling CM-Well Data Tools
 
 > **Notes:**
 > * To access the CM-Well Git site, you will need a GitHub user. See the [CM-Well GitHub Repository](https://github.com/CM-Well/CM-Well).
@@ -202,7 +202,7 @@ Statistics Updated | The time that the sensor made its latest update.
 
 > **Note:** To compile and run the CM-Well data tools, you will need Java version 8.
 
-## DEPRECATED: Running the SPARQL Triggered Processor Utility ##
+## DEPRECATED: Running the SPARQL Triggered Processor Utility
 
 You can still run the SPARQL Triggered Processor as a stand-alone executable.
 

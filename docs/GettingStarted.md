@@ -1,4 +1,4 @@
-# Getting Started with CM-Well #
+# Getting Started with CM-Well
 
 ----
 

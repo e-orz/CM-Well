@@ -1,4 +1,4 @@
-# Hands-On Exercise: Get Infotons by URI #
+# Hands-On Exercise: Get Infotons by URI
 
 ----
 
@@ -6,14 +6,14 @@
 
 ----
 
-## Step Outline ##
+## Step Outline
 
 1. [Upload infotons](#hdr1).
 2. [Get a single infoton by URI](#hdr2).
 3. [Get multiple infotons by URI](#hdr3).
 
 <a name="hdr1"></a>
-## 1. Upload Infotons ##
+## 1. Upload Infotons
 
 **Action:** Upload triples for 2 person entities with gender and name fields.
 
@@ -35,7 +35,7 @@
     {"success":true}
 
 <a name="hdr2"></a>
-## 2. Get a Single Infoton by URI ##
+## 2. Get a Single Infoton by URI
 
 **Action:** Get "Jane Smith" infoton.
 
@@ -63,7 +63,7 @@
     }
    
 <a name="hdr3"></a>
-## 3. Get Multiple Infotons by URI ##
+## 3. Get Multiple Infotons by URI
 
 **Action:** Get "John Smith" and "Jane Smith" infotons.
 
@@ -130,7 +130,7 @@
      "irretrievablePaths":[]
     }    
 
-## API Reference ##
+## API Reference
 [Add Infotons and Fields](API.Update.AddInfotonsAndFields.md)
 [Get a Single Infoton by URI](API.Get.GetSingleInfotonByURI.md)
 [Get Multiple Infotons by URI](API.Get.GetMultipleInfotonsByURI.md)

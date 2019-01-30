@@ -1,4 +1,4 @@
-# Hands-On Exercise: Stream with Iterator #
+# Hands-On Exercise: Stream with Iterator
 
 ----
 
@@ -6,13 +6,13 @@
 
 ----
 
-## Step Outline ##
+## Step Outline
 
 1. [Create Iterator](#hdr1).
 2. [Get Next Chunk](#hdr2)
 
 <a name="hdr1"></a>
-## 1. Create Iterator ##
+## 1. Create Iterator
 
 **Action:** Create an iterator for retrieving all infotons under permid.org, with a session timeout of 60 seconds.
 
@@ -25,7 +25,7 @@
 `{"type":"IterationResults","iteratorId":"YWtrYS50Y3A6Ly9jbS13ZWxsLXByb2RAMTAuMjA0LjE3Ny4xOjQ4ODMxL3VzZXIvJGJkYiMtMTc4MTcxOTQwMA","totalHits":94271748,"infotons":[]}`    
     
 <a name="hdr2"></a>
-## 2. Get Next Chunk ##
+## 2. Get Next Chunk
 
 **Action:** Get the next chunk of infotons.
 
@@ -254,7 +254,7 @@
     /permid.org/1-21591339888
     /permid.org/1-21591877787
 
-## API Reference ##
+## API Reference
 [Create Iterator](API.Stream.CreateIterator.md)
 [Get Next Chunk](API.Stream.GetNextChunk.md)
        

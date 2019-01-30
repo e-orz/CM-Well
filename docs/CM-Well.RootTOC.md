@@ -1,4 +1,4 @@
-# CM-Well Documentation: Table of Contents #
+# CM-Well Documentation: Table of Contents
 
 <table>
   <tr>

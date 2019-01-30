@@ -1,4 +1,4 @@
-# Hands-On Exercise: Query with SPARQL #
+# Hands-On Exercise: Query with SPARQL
 
 ----
 
@@ -33,7 +33,7 @@
     | <http://permid.org/1-5050714197> | "Keyless Systems Ltd" | "Israel\n"  | 
     --------------------------------------------------------------------------------------------------------------------------------------------------------------
         
-## API Reference ##
+## API Reference
 [Using SPARQL on Infotons](DevGuide.UsingSPARQLOnCM-WellInfotons.md)
 [Apply SPARQL to Query Results](API.Query.ApplySPARQLToQueryResults.md)
 [Field Condition Syntax](API.FieldConditionSyntax.md)

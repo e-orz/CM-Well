@@ -1,4 +1,4 @@
-# Hands-On Exercise: Query with Gremlin #
+# Hands-On Exercise: Query with Gremlin
 
 ----
 
@@ -6,13 +6,13 @@
 
 ----
 
-## Step Outline ##
+## Step Outline
 
 1. [Upload Data](#hdr1)
 2. [Run Gremlin Query](#hdr2)
 
 <a name="hdr1"></a>
-## 1. Upload Data ##
+## 1. Upload Data
 
 **Action:** Upload some person infotons, with relationships among the individuals.
 
@@ -56,7 +56,7 @@
 	{"success":true}
 
 <a name="hdr2"></a>
-## 2. Run Gremlin Query ##
+## 2. Run Gremlin Query
 
 **Action:** Retrieve person infotons which are outbound links of the "Sara Smith" infoton, whose **active** field value is "true".
 
@@ -77,7 +77,7 @@
 
 	v[http://example.org/Individuals/RebbecaSmith]
                 
-## API Reference ##
+## API Reference
 [Apply Gremlin to Query Results](API.Query.ApplyGremlinToQueryResults.md)
 
 ----

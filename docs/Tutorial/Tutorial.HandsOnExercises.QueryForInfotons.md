@@ -1,4 +1,4 @@
-# Hands-On Exercise: Query for Infotons #
+# Hands-On Exercise: Query for Infotons
 
 ----
 
@@ -6,7 +6,7 @@
 
 ----
 
-## Step Outline ##
+## Step Outline
 
 >**Note:** These steps are not dependent on each other and do not have to be completed in order.
 
@@ -19,7 +19,7 @@
 7. [Traverse Inbound and Outbound Links](#hdr7).
 
 <a name="hdr1"></a>
-## 1. Query by One Field Value ##
+## 1. Query by One Field Value
 
 **Action:** Get up to 3 entities under permid.org, whose CommonName value contains the string "Reuters".
 
@@ -80,7 +80,7 @@
     }
     
 <a name="hdr2"></a>
-## 2. Get Results with Data ##
+## 2. Get Results with Data
 
 **Action:** Get up to 3 entities under permid.org, whose CommonName value contains the string "Reuters", with their data, i.e. with all fields and not just system fields.
 
@@ -171,9 +171,9 @@
     } 
    
 <a name="hdr3"></a>
-## 3. Use Various Comparison Operators ##
+## 3. Use Various Comparison Operators
 
-### Partial Match ###
+### Partial Match
 
 **Action:** Get all entities under permid.org, whose CommonName value contains the string "qqqqq" (there are no infotons that match this query). The field condition uses the `:` partial match operator.
 
@@ -201,7 +201,7 @@
       }
     }
 
-### Fuzzy Match ###
+### Fuzzy Match
 
 **Action:** Get all entities under permid.org, whose CommonName value is a "fuzzy" (approximate) match of the string "qqqqq". The field condition uses the `~` fuzzy match operator.
 
@@ -440,7 +440,7 @@
       }
     }
         
-### Numeric Comparison ###
+### Numeric Comparison
 
 **Action:** Get up to 3 entities under permid.org, whose dsQuotationNumber value is greater than 950000. The field condition uses the `>` greater-than operator.
 
@@ -540,7 +540,7 @@
     }
         
 <a name="hdr4"></a>
-## 4. Specify Output Fields ##
+## 4. Specify Output Fields
 
 **Action:** Get only the CommonName and RCSAssetClass fields for up to 3 entities under permid.org, whose CommonName value contains the string "Reuters".
 
@@ -613,9 +613,9 @@
     }
 
 <a name="hdr5"></a>
-## 5. Implement AND, OR, NOT ##
+## 5. Implement AND, OR, NOT
 
-### Multiple Conditions ("AND")  ###
+### Multiple Conditions ("AND")
 
 **Action:** Get up to 3 entities under permid.org, whose CommonName value contains the string "Reuters", and whose RCSAssetClass value contains the string "TRAD".
 
@@ -705,7 +705,7 @@
       }
     }
     
-### Optional Conditions ("OR") ###
+### Optional Conditions ("OR")
 
 **Action:** Get up to 5 entities under permid.org, whose organizationStateProvince value contains either "Delaware" or "Idaho".
 
@@ -805,7 +805,7 @@
       }
     }  
 
-### Negative Conditions ("NOT") ###
+### Negative Conditions ("NOT")
 
 **Action:** Get up to 5 entities under permid.org, whose organizationStateProvince value contains "New York", but whose organizationCity value does not contain "New York" (i.e. the entity is located in New York state but not in New York city).
 
@@ -907,7 +907,7 @@
     }  
     
 <a name="hdr6"></a>
-## 6. Page through Results ##
+## 6. Page through Results
 
 **Action:** Get the first 3 entities (offset=0, length=3) under permid.org, whose organizationStateProvince value contains "New York" .
 
@@ -1051,7 +1051,7 @@
     }
     
 <a name="hdr7"></a>
-## 7. Traverse Inbound and Outbound Links ##
+## 7. Traverse Inbound and Outbound Links
 
 **Action:** Find the address of the company that issues a quote with a RIC code of "VAC". 
 The query uses the **yg** flag that enables traversing inbound and outbound links.
@@ -1198,7 +1198,7 @@ The steps in the query are:
       }
     }
 
-## API Reference ##
+## API Reference
 
 [Query for Infotons Using Field Conditions](API.Query.QueryForInfotonsUsingFieldConditions.md)
 [CM-Well Query Parameters](API.QueryParameters.md)

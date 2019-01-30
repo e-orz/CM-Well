@@ -1,4 +1,4 @@
-# Using the CM-Well Ingester #
+# Using the CM-Well Ingester
 
 ----
 
@@ -6,13 +6,13 @@
 
 ----
 
-## What is the CM-Well Ingester? ##
+## What is the CM-Well Ingester?
 
 The CM-Well Ingester is a CM-Well utility for uploading infotons to CM-Well in bulk. Using the Ingester, you can upload data from a file, the standard input, or a customized input source. The Ingester processes several upload requests in parallel, up to a configurable limit.
 
 The CM-Well Ingester is written in Scala and is packaged as a jar file (Java library). You can call it from a Java or Scala application, or in a command-line environment.
 
-## Downloading and Compiling CM-Well Source Code ##
+## Downloading and Compiling CM-Well Source Code
 
 > **Notes:**
 > * To access the CM-Well Git site, you will need a GitHub user. See the [CM-Well GitHub Repository](https://github.com/CM-Well/CM-Well).
@@ -38,7 +38,7 @@ The resulting shell script executables are created in ```cmwell-data-tools-app/t
 
 The resulting `cmwell-ingester_2.12-1.0.LOCAL.jar` file is created in `cmwell-data-tools/cmwell-ingester/target/scala-2.12/`.
 
-## Running the CM-Well Ingester as an Executable ##
+## Running the CM-Well Ingester as an Executable
 
 To run the CM-Well Ingester as a stand-alone executable, run the following command:
 ```
@@ -65,7 +65,7 @@ Here is an example of how to run the CM-Well Ingester as a stand-alone executabl
 cmwell-data-tools-app/target/pack/bin/ingester --host "cm-well-ph" --format ntriples --file input_file.nt
 ```
 
-## Using the CM-Well Ingester Jar ##
+## Using the CM-Well Ingester Jar
 
 To use the Ingester class, you will need to add the following import statements to your code:
 
@@ -81,14 +81,14 @@ See the method definitions in **cmwell-downloader/src/main/scala/cmwell/tools/da
 >**Note:** See [Ingesting Each Infoton as an Atomic Operation](#hdrAtomic).
 
 <a name="hdrAtomic"></a>
-## Ingesting Each Infoton as an Atomic Operation ##
+## Ingesting Each Infoton as an Atomic Operation
 
 Each infoton that you add to CM-Well must be ingested in one atomic operation.
 To ensure this, you must provide all of the infoton's data, including all field values, in a single line of input, terminated by the \n character.
 
 When calling the Ingester jar, you can use the utility class **GroupChunker** to group infoton data in a single line, using an infoton separator string that you define.
 
-## Running CM-Well Ingester in Scala REPL Mode ##
+## Running CM-Well Ingester in Scala REPL Mode
 
 You can run CM-Well Ingester in the Scala Interpreter (REPL), so you can examine program internals while running.
 
@@ -134,7 +134,7 @@ Here is an example of JSON-LD formatted data in a single string:
      "uuid" : "fae99c4442f0dced28a3e6d50159c7c2",   "neighborOf" : "o:ClarkKent" }
     """
 ```
-## Implementing Custom Input Sources ##
+## Implementing Custom Input Sources
 
 Instead of providing input from a file or from `stdin`, you can implement custom input sources (e.g. JDBC, socket...). To do so, you can either use one of the `akka.stream.scaladsl.Source` methods to create a new custom source, or use one of the methods already provided by Akka within `akka.stream.scaladsl.StreamConverters`.
 

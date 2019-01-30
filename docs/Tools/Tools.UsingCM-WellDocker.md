@@ -1,4 +1,4 @@
-# Using CM-Well Docker #
+# Using CM-Well Docker
 
 ----
 
@@ -6,7 +6,7 @@
 
 ----
 
-## What is CM-Well Docker? ##
+## What is CM-Well Docker?
 
 Docker is a 3rd-party utility that provides an isolated "container" for a software application, containing the application itself, any other software required for its installation, and any files it uses or creates. When running on Linux, Docker runs in the native environment; when running on Windows or Mac OS X, Docker runs over a Linux virtual machine. 
 
@@ -14,12 +14,12 @@ An application running under Docker is guaranteed to be isolated from the effect
 
 CM-Well Docker is a small instance of CM-Well that runs under Docker.
 
-## Why Should I Use CM-Well Docker? ##
+## Why Should I Use CM-Well Docker?
 If you work with the CM-Well Docker, you have your own private instance of CM-Well which is not affected by changes made to a public instance of CM-Well. For example, the lab environments are subject to periodic data wipes. In Lab or PPE environments, other users can make changes to data you have created, and vice versa.
 
 In addition, you can easily stop, start and reset the CM-Well Docker, which is especially useful if you want to test a scenario while starting from an empty repository. 
 
-## System Requirements for Running CM-Well Docker ##
+## System Requirements for Running CM-Well Docker
 Docker is intended to run on Linux, and this is the recommended OS for Docker installation. However, you can run it on Windows or Mac OS X. In Windows environments, Docker runs over the HyperV virtualization component.
 
 To run CM-Well Docker, you must have:
@@ -30,7 +30,7 @@ To run CM-Well Docker, you must have:
 
 > **Note:** See Docker's additional OS-specific requirements under [Docker's installation page](https://docs.docker.com/engine/installation).
 
-## Installing Docker ##
+## Installing Docker
 To run CM-Well Docker, you must install the Docker utility itself and the related CM-Well files. CM-Well requires over 5GB of RAM to run, and therefore after installing Docker, you must change its settings such that 6GB of RAM are allocated to the Docker virtual machine.
 
 **To install Docker:**
@@ -44,10 +44,10 @@ To run CM-Well Docker, you must install the Docker utility itself and the relate
 
 >**Note:** Optimally, CM-Well Docker should have 6GB of RAM configured. If there is not enough available memory on your machine, CM-Well Docker will still run with 4.8GB of RAM, though not at production-level performance.
 
-## Installing the CM-Well Image ##
+## Installing the CM-Well Image
 *Coming soon.*
 
-## Operating CM-Well Docker ##
+## Operating CM-Well Docker
 
 **To run CM-Well Docker:**
 Run the following command: `docker run --name cm-well -d -p 8080:9000 cmwell-dev`

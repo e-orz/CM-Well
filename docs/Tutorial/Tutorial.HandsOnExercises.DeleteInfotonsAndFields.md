@@ -1,4 +1,4 @@
-# Hands-On Exercise: Delete Infotons and Fields #
+# Hands-On Exercise: Delete Infotons and Fields
 
 ----
 
@@ -6,13 +6,13 @@
 
 ----
 
-## Step Outline ##
+## Step Outline
 
 1. [Add Infotons and Fields](#hdr1).
 2. [Delete Infotons and Fields](#hdr2)
 
 <a name="hdr1"></a>
-## 1. Add Infotons and Fields ##
+## 1. Add Infotons and Fields
 
 **Action:** Add several infotons and field values. 
 
@@ -43,7 +43,7 @@
     {"success":true}
     
 <a name="hdr2"></a>
-## 2. Update Field Values ##
+## 2. Update Field Values
 
 **Action:** Delete all "BabyBear" infotons and all name fields.
 **Curl command:**
@@ -62,7 +62,7 @@
 
     {"success":true}
 
-## API Reference ##
+## API Reference
 [Add Infotons and Fields](API.Update.AddInfotonsAndFields.md)
 [Delete Multiple Infotons](API.Update.DeleteMultipleInfotons.md)
 [Delete Fields](API.Update.DeleteFields.md)

@@ -8,6 +8,8 @@ site_author: CM-Well contibutors
 copyright: CM-Well copyright
 #You want to set it to true after the documentation will stabilize (fails on warnings)
 #strict: true
+#It's needed in order to create proper html links instead of directories. Only this way CM-Well can properly handle the links.
+use_directory_urls: false
 theme: 
   name: 'material'
   #logo: 'images/logo.svg' logo can be either image or icon!
@@ -31,128 +33,128 @@ nav:
   - Home:
     - qq: README.md
     - Bug Tracker: https://github.com/CM-Well/CM-Well/issues
-    - Release Notes:
-      - Release Notes/ReleaseNotes.Amoeba.Feb.2017.md
-      - Release Notes/ReleaseNotes.Beowulf.Feb.2017.md
-      - Release Notes/ReleaseNotes.CElegans.Mar.2017.md
-      - Release Notes/ReleaseNotes.Dec.15.2016.md
-      - Release Notes/ReleaseNotes.Dec.7.2016.md
-      - Release Notes/ReleaseNotes.Dolphin.Mar.2017.md
-      - Release Notes/ReleaseNotes.Firebird.May.2017.md
-      - Release Notes/ReleaseNotes.Gopher.May.2017.md
-      - Release Notes/ReleaseNotes.Hydra.June.2017.md
-      - Release Notes/ReleaseNotes.Iguana.July.2017.md
-      - Release Notes/ReleaseNotes.Jaguar.August.2017.md
-      - Release Notes/ReleaseNotes.Jan.17.2017.md
-      - Release Notes/ReleaseNotes.Jan.4.2017.md
-      - Release Notes/ReleaseNotes.Kingbird.September.2017.md
-      - Release Notes/ReleaseNotes.Lynx.September.2017.md
-      - Release Notes/ReleaseNotes.Mono.November.2017.md
-      - Release Notes/ReleaseNotes.Nautilus.November.2017.md
-      - Release Notes/ReleaseNotes.Nov.10.2016.md
-      - Release Notes/ReleaseNotes.Oct.6.2016.md
-      - Release Notes/ReleaseNotes.Octopus.December.2017.md
-      - Release Notes/ReleaseNotes.Piranha.January.2018.md
-      - Release Notes/ReleaseNotes.Quetzal.February.2018.md
-      - Release Notes/ReleaseNotes.Rhino.March.2018.md
-      - Release Notes/ReleaseNotes.Sept.11.2016.md
-      - Release Notes/ReleaseNotes.Swan.April.2018.md
-      - Release Notes/ReleaseNotes.TOC.md
-      - Release Notes/ReleaseNotes.Turtle.May.2018.md
-      - Release Notes/ReleaseNotes.Unicorn.June.2018.md
-      - Release Notes/ReleaseNotes.Viper.June.2018.md
-      - Release Notes/ReleaseNotes.Wombat.August.2018.md
-      - Release Notes/ReleaseNotes.Xerus.October.2018.md
-      - Release Notes/ReleaseNotes.Yak.November.2018.md
-      - Release Notes/ReleaseNotes.Zebra.December.2018.md
+    - ReleaseNotes:
+      - ReleaseNotes/ReleaseNotes.Amoeba.Feb.2017.md
+      - ReleaseNotes/ReleaseNotes.Beowulf.Feb.2017.md
+      - ReleaseNotes/ReleaseNotes.CElegans.Mar.2017.md
+      - ReleaseNotes/ReleaseNotes.Dec.15.2016.md
+      - ReleaseNotes/ReleaseNotes.Dec.7.2016.md
+      - ReleaseNotes/ReleaseNotes.Dolphin.Mar.2017.md
+      - ReleaseNotes/ReleaseNotes.Firebird.May.2017.md
+      - ReleaseNotes/ReleaseNotes.Gopher.May.2017.md
+      - ReleaseNotes/ReleaseNotes.Hydra.June.2017.md
+      - ReleaseNotes/ReleaseNotes.Iguana.July.2017.md
+      - ReleaseNotes/ReleaseNotes.Jaguar.August.2017.md
+      - ReleaseNotes/ReleaseNotes.Jan.17.2017.md
+      - ReleaseNotes/ReleaseNotes.Jan.4.2017.md
+      - ReleaseNotes/ReleaseNotes.Kingbird.September.2017.md
+      - ReleaseNotes/ReleaseNotes.Lynx.September.2017.md
+      - ReleaseNotes/ReleaseNotes.Mono.November.2017.md
+      - ReleaseNotes/ReleaseNotes.Nautilus.November.2017.md
+      - ReleaseNotes/ReleaseNotes.Nov.10.2016.md
+      - ReleaseNotes/ReleaseNotes.Oct.6.2016.md
+      - ReleaseNotes/ReleaseNotes.Octopus.December.2017.md
+      - ReleaseNotes/ReleaseNotes.Piranha.January.2018.md
+      - ReleaseNotes/ReleaseNotes.Quetzal.February.2018.md
+      - ReleaseNotes/ReleaseNotes.Rhino.March.2018.md
+      - ReleaseNotes/ReleaseNotes.Sept.11.2016.md
+      - ReleaseNotes/ReleaseNotes.Swan.April.2018.md
+      - ReleaseNotes/ReleaseNotes.TOC.md
+      - ReleaseNotes/ReleaseNotes.Turtle.May.2018.md
+      - ReleaseNotes/ReleaseNotes.Unicorn.June.2018.md
+      - ReleaseNotes/ReleaseNotes.Viper.June.2018.md
+      - ReleaseNotes/ReleaseNotes.Wombat.August.2018.md
+      - ReleaseNotes/ReleaseNotes.Xerus.October.2018.md
+      - ReleaseNotes/ReleaseNotes.Yak.November.2018.md
+      - ReleaseNotes/ReleaseNotes.Zebra.December.2018.md
   - Developer Guide:
-    - Developer Guide/DevGuide.AdvancedQueries.md
-    - Developer Guide/DevGuide.BasicQueries.md
-    - Developer Guide/DevGuide.BestPractices.ConditionalUpdates.md
-    - Developer Guide/DevGuide.BestPractices.DeletingKnownFieldValues.md
-    - Developer Guide/DevGuide.BestPractices.ManagingRetries.md
-    - Developer Guide/DevGuide.BestPractices.StreamingMethods.md
-    - Developer Guide/DevGuide.BestPractices.TOC.md
-    - Developer Guide/DevGuide.CallingJavaScalaFunctionsFromSPARQLQueries.md
-    - Developer Guide/DevGuide.CM-WellSecurityFeatures.md
-    - Developer Guide/DevGuide.CurlUtility.md
-    - Developer Guide/DevGuide.DosAndDonts.md
-    - Developer Guide/DevGuide.ManagingUsers.md
-    - Developer Guide/DevGuide.StreamingDataFromCM-Well.md
-    - Developer Guide/DevGuide.SubscribingToReal-TimeUpdates.md
-    - Developer Guide/DevGuide.TOC.md
-    - Developer Guide/DevGuide.UpdatingCM-Well.md
-    - Developer Guide/DevGuide.UsingElasticSearchStatistics.md
-    - Developer Guide/DevGuide.UsingSPARQLOnCM-WellInfotons.md
-    - Developer Guide/DevGuide.WorkingWithNamedSub-Graphs.md  
+    - DeveloperGuide/DevGuide.AdvancedQueries.md
+    - DeveloperGuide/DevGuide.BasicQueries.md
+    - DeveloperGuide/DevGuide.BestPractices.ConditionalUpdates.md
+    - DeveloperGuide/DevGuide.BestPractices.DeletingKnownFieldValues.md
+    - DeveloperGuide/DevGuide.BestPractices.ManagingRetries.md
+    - DeveloperGuide/DevGuide.BestPractices.StreamingMethods.md
+    - DeveloperGuide/DevGuide.BestPractices.TOC.md
+    - DeveloperGuide/DevGuide.CallingJavaScalaFunctionsFromSPARQLQueries.md
+    - DeveloperGuide/DevGuide.CM-WellSecurityFeatures.md
+    - DeveloperGuide/DevGuide.CurlUtility.md
+    - DeveloperGuide/DevGuide.DosAndDonts.md
+    - DeveloperGuide/DevGuide.ManagingUsers.md
+    - DeveloperGuide/DevGuide.StreamingDataFromCM-Well.md
+    - DeveloperGuide/DevGuide.SubscribingToReal-TimeUpdates.md
+    - DeveloperGuide/DevGuide.TOC.md
+    - DeveloperGuide/DevGuide.UpdatingCM-Well.md
+    - DeveloperGuide/DevGuide.UsingElasticSearchStatistics.md
+    - DeveloperGuide/DevGuide.UsingSPARQLOnCM-WellInfotons.md
+    - DeveloperGuide/DevGuide.WorkingWithNamedSub-Graphs.md  
     - API reference:
-      - Developer Guide/API/API/API.TOC.md      
-      - Developer Guide/API/API.FieldConditionSyntax
-      - Developer Guide/API/API.FieldNameFormats.md
-      - Developer Guide/API/API.FromAndToDatetimeFormatting.md
-      - Developer Guide/API/API.InputAndOutputFormats.md
-      - Developer Guide/API/API.Login.Login.md
-      - Developer Guide/API/API.PagingThroughResultsWithOffsetAndLengthParameters.md
-      - Developer Guide/API/API.QueryParameters.md
-      - Developer Guide/API/API.ReturnCodes.md
-      - Developer Guide/API/API.SortingResultsWithTheSort-byFlag.md
-      - Developer Guide/API/API.TOC.md
-      - Developer Guide/API/API.UsingTheBlockingFlag.md
-      - Developer Guide/API/API.UsingTheRecursiveFlag.md
-      - Developer Guide/API/API.UsingTheWith-dataFlag.md
-      - Developer Guide/API/API.UsingTheWith-deletedFlag.md
-      - Developer Guide/API/API.UsingTheWith-historyFlag.md
-      - Developer Guide/API/Intro.OverviewOfTheCM-WellAPI.md
-      - Developer Guide/API/API.MetadataFields.md
-      - Developer Guide/API/API.ProtocolSystemField.md
-      - Developer Guide/API/API.UsingConditionalUpdates.md
+      - DeveloperGuide/API/API/API.TOC.md      
+      - DeveloperGuide/API/API.FieldConditionSyntax
+      - DeveloperGuide/API/API.FieldNameFormats.md
+      - DeveloperGuide/API/API.FromAndToDatetimeFormatting.md
+      - DeveloperGuide/API/API.InputAndOutputFormats.md
+      - DeveloperGuide/API/API.Login.Login.md
+      - DeveloperGuide/API/API.PagingThroughResultsWithOffsetAndLengthParameters.md
+      - DeveloperGuide/API/API.QueryParameters.md
+      - DeveloperGuide/API/API.ReturnCodes.md
+      - DeveloperGuide/API/API.SortingResultsWithTheSort-byFlag.md
+      - DeveloperGuide/API/API.TOC.md
+      - DeveloperGuide/API/API.UsingTheBlockingFlag.md
+      - DeveloperGuide/API/API.UsingTheRecursiveFlag.md
+      - DeveloperGuide/API/API.UsingTheWith-dataFlag.md
+      - DeveloperGuide/API/API.UsingTheWith-deletedFlag.md
+      - DeveloperGuide/API/API.UsingTheWith-historyFlag.md
+      - DeveloperGuide/API/Intro.OverviewOfTheCM-WellAPI.md
+      - DeveloperGuide/API/API.MetadataFields.md
+      - DeveloperGuide/API/API.ProtocolSystemField.md
+      - DeveloperGuide/API/API.UsingConditionalUpdates.md
       - Update:
-        - Developer Guide/API/Update/API.Update.AddFileInfoton.md
-        - Developer Guide/API/Update/API.Update.AddInfotonsAndFieldsToSubGraph.md
-        - Developer Guide/API/Update/API.Update.AddLinkInfoton.md
-        - Developer Guide/API/Update/API.Update.DeleteASingleInfoton.md
-        - Developer Guide/API/Update/API.Update.DeleteFields.md
-        - Developer Guide/API/Update/API.Update.DeleteMultipleInfotons.md
-        - Developer Guide/API/Update/API.Update.DeleteOrReplaceValuesInNamedSubGraph.md
-        - Developer Guide/API/Update/API.Update.DeleteSpecificFieldValues.md
-        - Developer Guide/API/Update/API.Update.Purge.md
-        - Developer Guide/API/Update/API.Update.ReplaceFieldValues.md
-        - Developer Guide/API/Update/API.Update.TrackUpdates.md
-        - Developer Guide/API/Update/API.Update.AddInfotonsAndFields.md
+        - DeveloperGuide/API/Update/API.Update.AddFileInfoton.md
+        - DeveloperGuide/API/Update/API.Update.AddInfotonsAndFieldsToSubGraph.md
+        - DeveloperGuide/API/Update/API.Update.AddLinkInfoton.md
+        - DeveloperGuide/API/Update/API.Update.DeleteASingleInfoton.md
+        - DeveloperGuide/API/Update/API.Update.DeleteFields.md
+        - DeveloperGuide/API/Update/API.Update.DeleteMultipleInfotons.md
+        - DeveloperGuide/API/Update/API.Update.DeleteOrReplaceValuesInNamedSubGraph.md
+        - DeveloperGuide/API/Update/API.Update.DeleteSpecificFieldValues.md
+        - DeveloperGuide/API/Update/API.Update.Purge.md
+        - DeveloperGuide/API/Update/API.Update.ReplaceFieldValues.md
+        - DeveloperGuide/API/Update/API.Update.TrackUpdates.md
+        - DeveloperGuide/API/Update/API.Update.AddInfotonsAndFields.md
       - Get:
-        - Developer Guide/API/Get/API.Get.GetMultipleInfotonsByURI.md
-        - Developer Guide/API/Get/API.Get.GetSingleInfotonByURI.md
-        - Developer Guide/API/Get/API.Get.GetSingleInfotonByUUID.md
+        - DeveloperGuide/API/Get/API.Get.GetMultipleInfotonsByURI.md
+        - DeveloperGuide/API/Get/API.Get.GetSingleInfotonByURI.md
+        - DeveloperGuide/API/Get/API.Get.GetSingleInfotonByUUID.md
       - Stream:
-        - Developer Guide/API/Stream/API.Stream.ConsumeNextBulk.md
-        - Developer Guide/API/Stream/API.Stream.ConsumeNextChunk.md
-        - Developer Guide/API/Stream/API.Stream.CreateConsumer.md
-        - Developer Guide/API/Stream/API.Stream.CreateIterator.md
-        - Developer Guide/API/Stream/API.Stream.StreamInfotons.md
-        - Developer Guide/API/Stream/API.Stream.GetNextChunk.md
+        - DeveloperGuide/API/Stream/API.Stream.ConsumeNextBulk.md
+        - DeveloperGuide/API/Stream/API.Stream.ConsumeNextChunk.md
+        - DeveloperGuide/API/Stream/API.Stream.CreateConsumer.md
+        - DeveloperGuide/API/Stream/API.Stream.CreateIterator.md
+        - DeveloperGuide/API/Stream/API.Stream.StreamInfotons.md
+        - DeveloperGuide/API/Stream/API.Stream.GetNextChunk.md
       - Traversal:
-        - Developer Guide/API/Traversal/API.Traversal.Intro.md
-        - Developer Guide/API/Traversal/API.Traversal.Operands.md
-        - Developer Guide/API/Traversal/API.Traversal.TOC.md
-        - Developer Guide/API/Traversal/API.Traversal.gqp.md
-        - Developer Guide/API/Traversal/API.Traversal.xg.md
-        - Developer Guide/API/Traversal/API.Traversal.yg.md
+        - DeveloperGuide/API/Traversal/API.Traversal.Intro.md
+        - DeveloperGuide/API/Traversal/API.Traversal.Operands.md
+        - DeveloperGuide/API/Traversal/API.Traversal.TOC.md
+        - DeveloperGuide/API/Traversal/API.Traversal.gqp.md
+        - DeveloperGuide/API/Traversal/API.Traversal.xg.md
+        - DeveloperGuide/API/Traversal/API.Traversal.yg.md
       - Query:
-        - Developer Guide/API/Query/API.Query.ApplyGremlinToQueryResults.md
-        - Developer Guide/API/Query/API.Query.ApplySPARQLToEntireGraph.md
-        - Developer Guide/API/Query/API.Query.ApplySPARQLToQueryResults.md
-        - Developer Guide/API/Query/API.Query.DataStatistics.md
-        - Developer Guide/API/Query/API.Query.QueryForInfotonsUsingFieldConditions.md
-        - Developer Guide/API/Query/API.Query.QueryForQuadsByTheirLabel.md
+        - DeveloperGuide/API/Query/API.Query.ApplyGremlinToQueryResults.md
+        - DeveloperGuide/API/Query/API.Query.ApplySPARQLToEntireGraph.md
+        - DeveloperGuide/API/Query/API.Query.ApplySPARQLToQueryResults.md
+        - DeveloperGuide/API/Query/API.Query.DataStatistics.md
+        - DeveloperGuide/API/Query/API.Query.QueryForInfotonsUsingFieldConditions.md
+        - DeveloperGuide/API/Query/API.Query.QueryForQuadsByTheirLabel.md
       - Authorization:
-        - Developer Guide/API/Authorization/API.Auth.ChangePassword.md
-        - Developer Guide/API/Authorization/API.Auth.GeneratePassword.md
-        - Developer Guide/API/Authorization/API.Auth.InvalidateCache.md
+        - DeveloperGuide/API/Authorization/API.Auth.ChangePassword.md
+        - DeveloperGuide/API/Authorization/API.Auth.GeneratePassword.md
+        - DeveloperGuide/API/Authorization/API.Auth.InvalidateCache.md
       - Subscribe:
-        - Developer Guide/API/Subscribe/API.Subscribe.PullNewData.md
-        - Developer Guide/API/Subscribe/API.Subscribe.SubscribeForPulledData.md
-        - Developer Guide/API/Subscribe/API.Subscribe.SubscribeForPushedData.md
-        - Developer Guide/API/Subscribe/API.Subscribe.Unsubscribe.md
+        - DeveloperGuide/API/Subscribe/API.Subscribe.PullNewData.md
+        - DeveloperGuide/API/Subscribe/API.Subscribe.SubscribeForPulledData.md
+        - DeveloperGuide/API/Subscribe/API.Subscribe.SubscribeForPushedData.md
+        - DeveloperGuide/API/Subscribe/API.Subscribe.Unsubscribe.md
   - Tutorial:
     - Tutorial/Tutorial.Building.md
     - Tutorial/Tutorial.Docker.md

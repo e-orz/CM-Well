@@ -1,4 +1,4 @@
-# Testing and Fixing Corrupted Data #
+# Testing and Fixing Corrupted Data
 
 ----
 
@@ -14,7 +14,7 @@ CM-Well supports a set of utility functions for testing and fixing such cases of
 >* CM-Well has since been improved to prevent these race conditions, and this should not happen going forward. However, in the older CM-Well data schema, you may still encounter infotons whose indexes have already been corrupted.
 >* The data test and fix functions should be used with caution, and can be disruptive in terms of the system resources they use. Use with care! They are likely to be deprecated in the future, when they are no longer needed. 
 
-## The x-verify Function ##
+## The x-verify Function
 
 You can run **x-verify** on a single infoton, to determine whether its indexing is valid or not. A return value of **true** means the index is valid, while **false** means it is not. If you receive a **false** result, you can fix the data corruption by running the **x-fix** function.
 
@@ -35,7 +35,7 @@ Response:
 
     {"type":"SimpleResponse","success":true}
 
-## The x-info Function ##
+## The x-info Function
 
 When you run the **x-info** function on a single infoton, the results contain all Elastic Search index entries and all Cassandra storage entries for all versions of the given infoton. One line is returned for each entry.
 
@@ -97,7 +97,7 @@ Response:
       }
     }
     
-## The x-fix Function ##
+## The x-fix Function
 
 If you have detected a corrupted index for a certain infoton by running **x-verify** and/or **x-info**, you can fix the corruption by running **x-fix**. **x-fix** fixes data and indexing problems, and deletes any invalid infotons or index data.
 

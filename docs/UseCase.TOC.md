@@ -1,4 +1,4 @@
-# CM-Well Use Cases #
+# CM-Well Use Cases
 
 The following table shows references to some CM-Well use cases already in production. Click on the use case reference to learn more about it.
 

@@ -1,4 +1,4 @@
-# CM-Well Tutorials: Table of Contents #
+# CM-Well Tutorials: Table of Contents
 
 ----
 

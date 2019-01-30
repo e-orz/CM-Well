@@ -1,4 +1,4 @@
-# Overview: Technical Aspects of CM-Well #
+# Overview: Technical Aspects of CM-Well
 
 ----
 
@@ -17,7 +17,7 @@ The following sections provide a high-level overview of CM-Well's technical prop
 [CM-Well Data Paradigms and Formats](#hdr5)
 
 <a name="hdr1"></a>
-## REST API and Other Tools ##
+## REST API and Other Tools
 CM-Well's basic API is a REST interface. This is an HTTP interface that allows the caller to read and write information in CM-Well. You can call the CM-Well API from standard tools that support REST, such as the cURL utility.
 
 You can also perform some operations in a browser, such as reading a single Organization's details. 
@@ -31,19 +31,19 @@ In addition to the central API, CM-Well offers several utilities to assist devel
 * **CM-Well Ingester** - a utility for uploading infotons to CM-Well in bulk. You can run it as a stand-alone executable, or call it as a library from your application. 
 
 <a name="hdr2"></a>
-## Development Languages ##
+## Development Languages
 You can develop your application in any language and development environment that allow you to make REST calls.
 
 If you are coding in Java or Scala, you can use the CM-Well utility libraries for these languages. See [CM-Well Git Repository](https://github.com/thomsonreuters/CM-Well) to download and collaborate on CM-Well-related code and libraries.
 
 
 <a name="hdr4"></a>
-## Accessing CM-Well ##
+## Accessing CM-Well
 
 You can perform CM-Well read operations over HTTP, with no special credentials.
 
 <a name="hdr5"></a>
-## CM-Well Data Paradigms and Formats ##
+## CM-Well Data Paradigms and Formats
 The underlying structure of CM-Well is a graph database, which means that the data is represented as nodes and connecting relationships rather than in tabular format. CM-Well conforms to the RDF (Resource Description Framework) Linked Data standard. RDF information can be formatted in several ways, and you can choose the format you prefer.
 
 For more information, see:

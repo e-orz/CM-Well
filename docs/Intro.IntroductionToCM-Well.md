@@ -1,4 +1,4 @@
-# Introduction to CM-Well #
+# Introduction to CM-Well
 
 ----
 
@@ -18,7 +18,7 @@
 [Getting Started with CM-Well](#hdr7)
 
 <a name="hdr1"></a>
-## What is CM-Well? ##
+## What is CM-Well?
 CM-Well is a writable [Linked Data](https://en.wikipedia.org/wiki/Linked_data) repository, which can be used to model data from various datasets.
 
 CM-Well (Content Matrix Well) adheres to Open Data principles, meaning that its data is in a standard, machine-readable format. The CM-Well code is Open Source and available at [GitHub](https://github.com/CM-Well/CM-Well).
@@ -28,13 +28,13 @@ CM-Well's data is represented as a graph database, which means that it contains 
 <img src="./_Images/small-graph-database.png">
 
 <a name="hdr3"></a>
-## CM-Well as a Platform for Data Modeling ##
+## CM-Well as a Platform for Data Modeling
 CM-Well can be used to build your own linked data repository. In addition to API calls for reading CM-Well information, there are calls for creating new entries and connections.
 
 For example, you could create a data repository describing countries, their capitals, continents and currencies. For each of these entities, you would create a corresponding entity in CM-Well, with appropriate relationships between them (e.g. "Paris" - "is capital of" - "France").
 
 <a name="hdr5"></a>
-## Why Should I Use CM-Well? ##
+## Why Should I Use CM-Well?
 CM-Well has many advantages and convenient features, including:
 
 * Easy-to-use Linked Data sharing as a service.
@@ -48,7 +48,7 @@ CM-Well has many advantages and convenient features, including:
 * As opposed to standard triple-stores that focus only on reading relatively static data, CM-Well is specifically designed to handle data that is constantly updated. This includes features such as convenient upload, handling historical versions, subscribing to real-time updates, and more.
 
 <a name="hdr7"></a>
-## Getting Started with CM-Well ##
+## Getting Started with CM-Well
 
 Here are some more topics to help you get started with CM-Well:
 

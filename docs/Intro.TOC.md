@@ -1,4 +1,4 @@
-# CM-Well Introductory Topics #
+# CM-Well Introductory Topics
 
 ----
 

@@ -1,4 +1,4 @@
-# The CM-Well Web Interface #
+# The CM-Well Web Interface
 
 ----
 
@@ -30,7 +30,7 @@
 * [Configuring Infoton Link Display by Type](#hdr24)
 
 <a name="hdr1"></a>
-## Introduction ##
+## Introduction
 
 The CM-Well web interface is a graphical user interface for accessing CM-Well through your browser. When you browse to the root URI of a CM-Well instance, you see this page:
 
@@ -44,7 +44,7 @@ This page describes the features of the CM-Well web interface and how to use the
 
 ---------------------------------
 <a name="hdr2"></a>
-## CM-Well Paths ##
+## CM-Well Paths
 
 CM-Well is a Linked Data repository with a hierarchical folder structure. Each folder can contain infotons and other folders. (See [CM-Well Data Paradigms](Intro.CM-WellDataParadigms.md) to learn more about infotons).
 
@@ -54,10 +54,10 @@ A path to an infoton contains the CM-Well host, the sub-folders and the infoton'
 
 ---------------------------------
 <a name="hdr3"></a>
-## CM-Well UI Controls ##
+## CM-Well UI Controls
 
 <a name="hdr4"></a>
-### Address Bar ###
+### Address Bar
 
 You can browse to an infoton by entering its path in a browser address bar.
 
@@ -65,7 +65,7 @@ You can browse to an infoton by entering its path in a browser address bar.
 
 ---------------------------------
 <a name="hdr5"></a>
-### Search Results ###
+### Search Results
 
 The left-hand pane of the CM-Well web interface displays your query results, or in other words, the folders and/or infoton/s that reside under the CM-Well path in the address bar.
 
@@ -81,7 +81,7 @@ Clicking on the URI of a folder or infoton displays the page for the selected fo
 
 ---------------------------------
 <a name="hdr21"></a>
-### Infoton View ###
+### Infoton View
 
 When a single infoton's URI appears in the browser address bar, the CM-Well web interface shows that infoton's page.
 
@@ -91,7 +91,7 @@ On this page, you can see the infoton's field names and values.
 
 ---------------------------------
 <a name="hdrSubGraph"></a>
-#### Sub-Graph Icon ####
+#### Sub-Graph Icon
 
 For some infotons, you may notice that some fields have a blue graph icon. This indicates that these fields are part of a sub-graph, or in other words, have been given a label.  (See [Working with Named Sub-Graphs](DevGuide.WorkingWithNamedSub-Graphs.md) to learn more.) You can see the label value by hovering over this icon.
 
@@ -99,7 +99,7 @@ For some infotons, you may notice that some fields have a blue graph icon. This 
 
 ---------------------------------
 <a name="hdrFormat"></a>
-#### Format Dropdown ####
+#### Format Dropdown
 
 At the top of the infoton view, you can see the **View in format** dropdown menu. This allows you to see the infoton fields in the triples format of your choice.
 
@@ -113,7 +113,7 @@ Select one of the values from the **View in format** dropdown menu. A new browse
 
 ---------------------------------
 <a name="hdrSysInfo"></a>
-#### System Information Fields ####
+#### System Information Fields
 
 Infotons have two types of fields: user-defined data fields (also known as "object fields") which the user adds to the infoton, and system fields, which the CM-Well system creates. System fields include items such as the infoton's path, UUID and last modified time.
 
@@ -123,7 +123,7 @@ By default, system field are hidden in the infoton view. You can show or hide th
 
 ---------------------------------
 <a name="hdrFF"></a>
-#### Favorite Field Controls ####
+#### Favorite Field Controls
 
 Using the favorite field controls in the infoton view, you can choose to display only a subset of fields that interests you.
 
@@ -138,7 +138,7 @@ To display only your favorite fields:
 
 ---------------------------------
 <a name="hdr6"></a>
-### Home Button ###
+### Home Button
 
 Clicking on the Home button at the top left navigates to the CM-Well root URI.
 
@@ -146,7 +146,7 @@ Clicking on the Home button at the top left navigates to the CM-Well root URI.
 
 ---------------------------------
 <a name="hdr7"></a>
-### HELP Link ###
+### HELP Link
 
 Clicking on the HELP link at the top right displays the Table of Contents page for the CM-Well help documentation.
 
@@ -154,7 +154,7 @@ Clicking on the HELP link at the top right displays the Table of Contents page f
 
 ---------------------------------
 <a name="hdrOldUI"></a>
-### Use Old UI Link ###
+### Use Old UI Link
 
 If you prefer to use the previous version of the CM-Well web UI, you can click on the **Use old UI** link at the top right of the page.
 
@@ -164,7 +164,7 @@ If you prefer to use the previous version of the CM-Well web UI, you can click o
 
 ---------------------------------
 <a name="hdr8"></a>
-### Results List Scrollbar ###
+### Results List Scrollbar
 
 When there is more than one sub-folder or infoton under the URI in the address bar, the results are displayed in a list on the left of the page. A message above the results list shows how many results are displayed on this page.
 
@@ -176,7 +176,7 @@ If there are many results, you can use the scrollbar to the right of the list to
 
 ---------------------------------
 <a name="hdr17"></a>
-### Search Controls ###
+### Search Controls
 
 The CM-Well search controls appear at the top of the page.
 
@@ -191,7 +191,7 @@ To search for a value in all infoton fields:
 
 ---------------------------------
 <a name="hdr18"></a>
-### Navigating by Type ###
+### Navigating by Type
 
 Sometimes you may want to retrieve infotons according to their RDF type. For instance, you may want to examine only the infotons whose RDF type is Person.
 
@@ -219,7 +219,7 @@ You can click the up-arrow on the right to hide all type lines but the first.
 
 ---------------------------------
 <a name="hdr22"></a>
-## Running CM-Well Queries in the UI ##
+## Running CM-Well Queries in the UI
 
 You can run simple CM-Well queries by entering them in your browser's address bar. These queries correspond to GET operations in CM-Well's REST API.
 
@@ -239,7 +239,7 @@ See the [Developer Guide and API Reference topics](CM-Well.RootTOC.md) to learn 
 
 ---------------------------------
 <a name="hdr23"></a>
-## Special CM-Well Folders and Files ##
+## Special CM-Well Folders and Files
 
 In addition to folders and infotons that users create on CM-Well, there are several folders and files kept on CM-Well for various monitoring purposes and other functional purposes. (Files may be saved to CM-Well as a special kind of infoton.)
 
@@ -252,11 +252,11 @@ The following special folders, files and infotons may be of interest to users an
 
 ---------------------------------
 <a name="hdr24"></a>
-## Configuring Infoton Link Display by Type ##
+## Configuring Infoton Link Display by Type
 
 Authorized users can configure the display of infoton links according to RDF type, instead of displaying the infoton link only as a path with a cryptic UUID. For example, for a Person infoton, you might want to display the person's first and last names in the link. For an organization, you might want to display the organization's name, CEO and country of origin.
 
-### The Display Configuration Infoton ###
+### The Display Configuration Infoton
 
 The Display Name configuration infoton must be placed in **/meta/dn/\<HASH\>**, where HASH is the md5 encoding of a type.rdf value. The configuration infoton must have a **forType** field, containing the RDF type for which you want to configure display.
 In addition, it should have at least one field with the **displayName** prefix. The field values define the string that should be added to the displayed link for infotons of the given type. The values are either the name of a field that usually appears in the infoton, or a javascript snippet that defines a manipulation of such fields.
@@ -266,7 +266,7 @@ For example:
 
 In this example, **displayName1** and **displayName2** refer to name fields that usually appear in Person infotons. **displayNameA** and **displayNameB** contain javascript snippets that define concatenations of such fields and string constants.
 
-### Calculating Display Names ###
+### Calculating Display Names
 
 Multiple **displayName** values provide alternate display names. Display names are calculated until one of them produces a non-empty string, and then that string is used in the displayed link. (Note that an empty string  might be produced if the relevant field values are missing).
 

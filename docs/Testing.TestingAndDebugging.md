@@ -1,4 +1,4 @@
-# Tips for Testing and Debugging #
+# Tips for Testing and Debugging
 
 ----
 
@@ -22,7 +22,7 @@ Here are some tips for facilitating testing and debugging of your CM-Well client
 
 
 <a name="hdr1"></a>
-## Using the debug-info Flag in Search Operations ##
+## Using the debug-info Flag in Search Operations
 
 If a search operation is not behaving as expected, you may want to examine the precise query that CM-Well sends to the Elastic Search module (that is responsible for full-text search on infotons).
 
@@ -104,7 +104,7 @@ The response then contains the **searchQueryStr** attribute, as follows:
         }
     
 <a name="hdr2"></a>
-## Using the verbose Flag in SPARQL Queries ##
+## Using the verbose Flag in SPARQL Queries
 
 You can add the **verbose** flag to SPARQL queries, to see a timed breakdown of the operations that the query performs.
 
@@ -145,7 +145,7 @@ In the Time Metrics table, you can see the two query tasks: the search that coll
 * **# lines** - The number of lines (triples or quads) returned by matching the CM-Well query in the **Task** value.
 
 <a name="hdr3"></a>
-## Using the show-graph Flag in SPARQL Queries ##
+## Using the show-graph Flag in SPARQL Queries
 
 You can add the **show-graph** parameter to SPARQL queries, in order to see the sub-graph that is produced by collecting the triples defined in the PATHS section. This can be helpful when you want to determine if there's a problem in the PATHS section or the SPARQL query.
 
@@ -212,7 +212,7 @@ For example, this call:
     ------------------------------------------------------------
 
 <a name="hdr4"></a>
-## Testing RDF Syntax with the dry-run Flag ##
+## Testing RDF Syntax with the dry-run Flag
 
 You can test the validity of your RDF input's syntax by adding the **dry-run** flag to an upload operation (directed to the _in endpoint). When this flag is added, the call only returns the validity status, without actually performing the upload.
 
@@ -233,7 +233,7 @@ For this call:
     {"success":false,"error":"[line: 1, col: 42] Unrecognized: is_a"}
 
 <a name="hdr5"></a>
-## Obtaining Processing Time from the X-CMWELL-RT Header ##
+## Obtaining Processing Time from the X-CMWELL-RT Header
 
 You can obtain the processing time for a call to CM-Well, by adding the **-v** flag to the curl command, and examining the value of the **X-CMWELL-RT** (RT = Run Time) response header. The time value is in milliseconds.
 

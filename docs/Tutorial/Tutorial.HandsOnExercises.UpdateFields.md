@@ -1,4 +1,4 @@
-# Hands-On Exercise: Update Fields #
+# Hands-On Exercise: Update Fields
 
 ----
 
@@ -6,13 +6,13 @@
 
 ----
 
-## Step Outline ##
+## Step Outline
 
 1. [Add Infotons and Fields](#hdr1).
 2. [Update Field Values](#hdr2)
 
 <a name="hdr1"></a>
-## 1. Add Infotons and Fields ##
+## 1. Add Infotons and Fields
 
 **Action:** Add several infotons and field values. 
 
@@ -42,7 +42,7 @@
     {"success":true}
     
 <a name="hdr2"></a>
-## 2. Update Field Values ##
+## 2. Update Field Values
 
 **Action:** Change values of all "BabyBear" name fields. After changing the field values, you can browse to the infoton URIs to see the updated values.
 
@@ -65,7 +65,7 @@
 
     {"success":true}
     
-## API Reference ##
+## API Reference
 [Add Infotons and Fields](API.Update.AddInfotonsAndFields.md)
 [Replace Field Values](API.Update.ReplaceFieldValues.md)
     	

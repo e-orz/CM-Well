@@ -1,4 +1,4 @@
-# Tutorial: Hands-On Exercises #
+# Tutorial: Hands-On Exercises
 
 ----
 

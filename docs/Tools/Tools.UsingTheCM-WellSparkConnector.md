@@ -1,4 +1,4 @@
-# Using the CM-Well Spark Connector #
+# Using the CM-Well Spark Connector
 
 ----
 
@@ -6,7 +6,7 @@
 
 ----
 
-## Introduction ##
+## Introduction
 
 Apache Spark is a tool for processing and analyzing big data quickly, efficiently and easily. The two main Spark data structures that the Spark Connector uses are:
 
@@ -19,7 +19,7 @@ The **CM-Well Spark Connector** is an add-on to the Spark engine, which allows y
 
 To learn more about Spark classes and functions, please visit the [Apache Spark web site](http://spark.apache.org).
 
-## Comparison to Other Advanced Query Tools ##
+## Comparison to Other Advanced Query Tools
 
 You may be familiar with other special tools for querying and performing statistical analysis on CM-Well data. Here is a brief explanation about when to use each tool.
 
@@ -30,7 +30,7 @@ SPARQL queries (**_sp** endpoint) | SPARQL is effective for queries that require
 SPARQL queries on whole graph (**_sparql** endpoint) | Same as above, except that this endpoint can handle queries on the entire CM-Well graph as opposed to a particular path. See [Apply SPARQL to the Entire Graph](API.Query.ApplySPARQLToEntireGraph.md) to learn more.
 Spark Connector | Use the Spark Connector to run statistical queries on all of CM-Well, or on large parts of it. There is no limit (apart from the underlying hardware) on the data size or query complexity that Spark can handle. (As mentioned above, use the **stats** API if you only need one of the metrics it provides.)
 
-## System Requirements ##
+## System Requirements
 
 To run the Spark Connector, you will need a **Linux environment** and **JVM 1.8**.
 
@@ -45,11 +45,11 @@ To run the Spark Connector, you will need a **Linux environment** and **JVM 1.8*
 
 <div style="page-break-after: always;"></div>
 
-## Downloading and Installing the Spark Connector ##
+## Downloading and Installing the Spark Connector
 
 *Coming soon.*
 
-## Running the CM-Well Connector in the Spark Client ##
+## Running the CM-Well Connector in the Spark Client
 
 To run the Spark server and initialize the CM-Well Spark Connector, run the **start** script in the root directory of the Spark Connector installation (the root directory is named **spark-2.1.0-bin-cm-well**). The script runs the Scala interactive shell and initializes the built-in Spark Connector module. You can now run Spark commands in the Scala REPL mode.
 
@@ -63,7 +63,7 @@ Here is an example of calling a **CMWell** object function to create an RDD from
 
 <div style="page-break-after: always;"></div>
 
-## The CM-Well Object Interface ##
+## The CM-Well Object Interface
 
 The CM-Well Spark Connector interface is encapsulated in the **CMWell** object. All of the object's functions receive a CM-Well URI and optionally a query, and return a Spark RDD or Data Frame object that represent the "infoton space" (set of infotons) that matches the path and query. You can then run all the functions that Spark supports for its RDD and DataFrame classes. (See the [Spark Programming Guide](http://spark.apache.org/docs/latest/programming-guide.html) to learn more.)
 
@@ -92,7 +92,7 @@ infotonN3(cmWellUrl:String, qp:String=null, infotonLimit:Int=INFOTON_SAFETY_LIMI
 infotonJsonLD(cmWellUrl:String, qp:String=null, infotonLimit:Int=INFOTON_SAFETY_LIMIT_WHEN_PLAYING) | RDD[(String, String)] | As above but with JSONLD infoton representation.
 infotonDF(cmWellUrl:String, qp:String=null, infotonLimit:Int=INFOTON_SAFETY_LIMIT_WHEN_PLAYING) | DataFrame | Returns a DataFrame containing a tabular representation of all infotons in the infoton space. Each row is an infoton and each column is an infoton field. For best results, apply this function to infotons of the same type (with the same fields). If the infotons have different sets of fields, the Connector creates a union of all fields.
 
-## Calling the Spark Connector from Your Code ##
+## Calling the Spark Connector from Your Code
 
 You can also call the Spark Connector from your own code, then create a jar that you submit and run as a Spark job. To do this:
 

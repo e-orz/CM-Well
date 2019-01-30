@@ -1,4 +1,4 @@
-# The Previous CM-Well Web Interface #
+# The Previous CM-Well Web Interface
 
 ----
 
@@ -34,7 +34,7 @@
 * [Configuring Infoton Link Display by Type](#hdr24)
 
 <a name="hdr1"></a>
-## Introduction ##
+## Introduction
 
 The CM-Well web interface is a graphical user interface for accessing CM-Well through your browser. When you browse to the root URI of a CM-Well instance, you see this page:
 
@@ -46,7 +46,7 @@ This page describes the features of the CM-Well web interface and how to use the
 
 ---------------------------------
 <a name="hdr2"></a>
-## CM-Well Paths ##
+## CM-Well Paths
 
 CM-Well is a Linked Data repository with a hierarchical folder structure. Each folder can contain infotons and other folders. (See [CM-Well Data Paradigms](Intro.CM-WellDataParadigms.md) to learn more about infotons).
 
@@ -58,10 +58,10 @@ There are several lab, pre-production and production CM-Well environments, and e
 
 ---------------------------------
 <a name="hdr3"></a>
-## CM-Well UI Controls ##
+## CM-Well UI Controls
 
 <a name="hdr4"></a>
-### Address Bar ###
+### Address Bar
 
 You can browse to an infoton by entering its path in a browser address bar.
 
@@ -69,7 +69,7 @@ You can browse to an infoton by entering its path in a browser address bar.
 
 ---------------------------------
 <a name="hdr5"></a>
-### Results Page ###
+### Results Page
 
 The central page area of the CM-Well web interface displays your query results, or in other words, the folders and/or infoton/s that reside under the CM-Well path in the address bar.
 
@@ -87,7 +87,7 @@ Clicking on the URI of a folder or infoton displays the page for the selected fo
 
 ---------------------------------
 <a name="hdr6"></a>
-### Home Button ###
+### Home Button
 
 Clicking on the Home button at the top left navigates to the CM-Well root URI.
 
@@ -95,7 +95,7 @@ Clicking on the Home button at the top left navigates to the CM-Well root URI.
 
 ---------------------------------
 <a name="hdr7"></a>
-### HELP Link ###
+### HELP Link
 
 Clicking on the HELP link at the top right displays the Table of Contents page for the CM-Well help documentation.
 
@@ -103,7 +103,7 @@ Clicking on the HELP link at the top right displays the Table of Contents page f
 
 ---------------------------------
 <a name="hdr8"></a>
-### Paging Controls ###
+### Paging Controls
 
 When there is more than one sub-folder or infoton under the URI in the address bar, the results are displayed in a list on the left of the page. If there are many results, they are divided among several pages, through which you can navigate using the paging controls.
 
@@ -113,7 +113,7 @@ A message above the results list shows how many results are displayed on this pa
 
 ---------------------------------
 <a name="hdr9"></a>
-### Message Banner ###
+### Message Banner
 
 Sometimes CM-Well may display a special message to its users, in the message banner at the bottom of the page.
 
@@ -121,7 +121,7 @@ Sometimes CM-Well may display a special message to its users, in the message ban
 
 ---------------------------------
 <a name="hdr10"></a>
-### Atom Feed Buttons ###
+### Atom Feed Buttons
 
 You may want to examine an atom feed (a.k.a. RSS feed) of the latest infotons in a certain CM-Well path. There are two ways to do this:
 
@@ -138,7 +138,7 @@ After you click on an atom feed button, the first 50 results in the feed are dis
 
 ---------------------------------
 <a name="hdr11"></a>
-### Format Dropdown ###
+### Format Dropdown
 
 You can choose the format of the infotons displayed by selecting a value from the **Format** dropdown menu.
 
@@ -146,7 +146,7 @@ You can choose the format of the infotons displayed by selecting a value from th
 
 ---------------------------------
 <a name="hdr12"></a>
-### History Dropdown ###
+### History Dropdown
 
 You can view all historical versions of the infoton in the address bar, in the format of your choice, by selecting a value from the **History** dropdown menu.
 
@@ -154,7 +154,7 @@ You can view all historical versions of the infoton in the address bar, in the f
 
 ---------------------------------
 <a name="hdr13"></a>
-### History Button ###
+### History Button
 
 To view all historical versions of an infoton in the left-hand list, hover over the infoton link, then click the history button that appears in the same line.
 
@@ -162,7 +162,7 @@ To view all historical versions of an infoton in the left-hand list, hover over 
 
 ---------------------------------
 <a name="hdr14"></a>
-### History Diff Button ###
+### History Diff Button
 
 To compare historical versions of an infoton in the left-hand list, hover over the infoton link, then click the **History (Diff View)** button that appears in the same line.
 
@@ -170,7 +170,7 @@ To compare historical versions of an infoton in the left-hand list, hover over t
 
 ---------------------------------
 <a name="hdr15"></a>
-### Type Navigation Button ###
+### Type Navigation Button
 
 Sometimes it is useful to retrieve infotons according to their RDF type. For instance, you may want to examine only the infotons whose RDF type is Person.
 
@@ -190,7 +190,7 @@ When you click on a type name, only infotons with that type are displayed.
 
 ---------------------------------
 <a name="hdr16"></a>
-### Field Dropdown ###
+### Field Dropdown
 
 The Field dropdown menu shows all field names found in the first 100 infotons under the current URI. You can choose a field name in order to apply a search to that field (see next section).
 
@@ -198,7 +198,7 @@ The Field dropdown menu shows all field names found in the first 100 infotons un
 
 ---------------------------------
 <a name="hdr17"></a>
-### Search Box ###
+### Search Box
 
 To search for a value in all infoton fields, type a value in the **Search** box and click the search button.
 
@@ -210,7 +210,7 @@ After you click the search button, the first 10 search results are displayed.
 
 ---------------------------------
 <a name="hdr18"></a>
-### Exact Term Checkbox ###
+### Exact Term Checkbox
 
 If you check the Exact Term checkbox, the search will match the search term exactly, rather than performing a tokenized string search, which is the default behavior.
 
@@ -218,13 +218,13 @@ If you check the Exact Term checkbox, the search will match the search term exac
 
 ---------------------------------
 <a name="hdr19"></a>
-### Statistics Dropdown ###
+### Statistics Dropdown
 
 You will see a dropdown entitled **Analytics** to the right of the **Search** button. This refers to a legacy feature for activating statistical functions. This feature is deprecated and will be replaced by an enhanced version of the feature.
 
 ---------------------------------
 <a name="hdr20"></a>
-### SPARQL Query Button ###
+### SPARQL Query Button
 
 You can activate a special page for submitting SPARQL queries, by clicking the (S) button in CM-Well's home page graphic. See [Using SPARQL on CM-Well Infotons](DevGuide.UsingSPARQLOnCM-WellInfotons.md) to learn more.
 
@@ -241,7 +241,7 @@ From this page, you can click on the **SPARQL on whole graph** link to display t
 
 ---------------------------------
 <a name="hdr21"></a>
-## The Infoton View ##
+## The Infoton View
 
 When a single infoton's URI appears in the browser address bar, the CM-Well web interface shows that infoton's page.
 
@@ -255,7 +255,7 @@ You may notice that some fields have a small, orange graph icon. This indicates 
 
 ---------------------------------
 <a name="hdr22"></a>
-## Running CM-Well Queries in the UI ##
+## Running CM-Well Queries in the UI
 
 You can run simple CM-Well queries by entering them in your browser's address bar. These queries correspond to GET operations in CM-Well's REST API.
 
@@ -279,7 +279,7 @@ See the [Developer Guide and API Reference topics](CM-Well.RootTOC.md) to learn 
 
 ---------------------------------
 <a name="hdr23"></a>
-## Special CM-Well Folders and Files ##
+## Special CM-Well Folders and Files
 
 In addition to folders and infotons that users create on CM-Well, there are several folders and files kept on CM-Well for various monitoring purposes and other functional purposes. (Files may be saved to CM-Well as a special kind of infoton.)
 
@@ -292,11 +292,11 @@ The following special folders, files and infotons may be of interest to users an
 
 ---------------------------------
 <a name="hdr24"></a>
-## Configuring Infoton Link Display by Type ##
+## Configuring Infoton Link Display by Type
 
 Authorized users can configure the display of infoton links according to RDF type, instead of displaying the infoton link only as a path with a cryptic UUID. For example, for a Person infoton, you might want to display the person's first and last names in the link. For an organization, you might want to display the organization's name, CEO and country of origin.
 
-### The Display Configuration Infoton ###
+### The Display Configuration Infoton
 
 The Display Name configuration infoton must be placed in **/meta/dn/\<HASH\>**, where HASH is the md5 encoding of a type.rdf value. The configuration infoton must have a **forType** field, containing the RDF type for which you want to configure display.
 In addition, it should have at least one field with the **displayName** prefix. The field values define the string that should be added to the displayed link for infotons of the given type. The values are either the name of a field that usually appears in the infoton, or a javascript snippet that defines a manipulation of such fields.
@@ -306,7 +306,7 @@ For example:
 
 In this example, **displayName1** and **displayName2** refer to name fields that usually appear in Person infotons. **displayNameA** and **displayNameB** contain javascript snippets that define concatenations of such fields and string constants.
 
-### Calculating Display Names ###
+### Calculating Display Names
 
 Multiple **displayName** values provide alternate display names. Display names are calculated until one of them produces a non-empty string, and then that string is used in the displayed link. (Note that an empty string  might be produced if the relevant field values are missing).
 

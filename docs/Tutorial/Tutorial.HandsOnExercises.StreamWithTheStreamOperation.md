@@ -1,4 +1,4 @@
-# Hands-On Exercise: Stream with the Stream Operation #
+# Hands-On Exercise: Stream with the Stream Operation
 
 ----
 
@@ -58,7 +58,7 @@
     
     ...
         
-## API Reference ##
+## API Reference
 [Stream Infotons](API.Stream.StreamInfotons.md)
 
 

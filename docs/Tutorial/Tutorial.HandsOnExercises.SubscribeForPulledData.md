@@ -1,4 +1,4 @@
-# Hands-On Exercise: Subscribe for Pulled Data #
+# Hands-On Exercise: Subscribe for Pulled Data
 
 ----
 
@@ -6,14 +6,14 @@
 
 ----
 
-## Step Outline ##
+## Step Outline
 
 1. [Subscribe for Pulled Data](#hdr1).
 2. [Get Latest Data](#hdr2)
 3. [Unsubscribe](#hdr3).
 
 <a name="hdr1"></a>
-## 1. Query by One Field Value ##
+## 1. Query by One Field Value
 
 **Action:** Get all new entities under permid.org.
 
@@ -26,7 +26,7 @@
     YWtrYS50Y3A6Ly9jbS13ZWxsLXByb2RAMTAuMjA0LjczLjE2MDozNDA5NS91c2VyLzdlYWM2NzI3
     
 <a name="hdr2"></a>
-## 2. Get Latest Data ##
+## 2. Get Latest Data
 
 **Action:** Get the latest updated infotons under permid.org.
 
@@ -58,7 +58,7 @@
         supplyChain:Urgency            "3"^^xsd:int .
    
 <a name="hdr3"></a>
-## 3. Unsubscribe ##
+## 3. Unsubscribe
 
 **Action:** Unsubscribe from real-time updates.
 
@@ -70,7 +70,7 @@
 
     unsubscribe YWtrYS50Y3A6Ly9jbS13ZWxsLXByb2RAMTAuMjA0LjczLjE2MDozNDA5NS91c2VyLzdlYWM2NzI3
 
-## API Reference ##
+## API Reference
 [Subscribe for Pulled Data](API.Subscribe.SubscribeForPulledData.md)
 [Pull New Data](API.Subscribe.PullNewData.md)
 [Unsubscribe](API.Subscribe.Unsubscribe.md)

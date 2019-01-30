@@ -1,4 +1,4 @@
-# CM-Well Health Dashboards #
+# CM-Well Health Dashboards
 
 ----
 
@@ -36,7 +36,7 @@ Status | Description
 >* A red status does not necessarily mean complete failure; requests may still be processed.
 >* The health views may show additional information about the components. These are internal status/error messages, which are not documented here. 
 
-## Component View ##
+## Component View
 
 Each CM-Well cluster runs multiple instances of each type of component, for purposes of parallel processing and redundancy. The component view shows the status of each of these "pools" of components.
 
@@ -58,7 +58,7 @@ The component view is displayed. It show the overall health status of the cluste
 
 <img src="./_Images/health-md-page.png">
 
-## Node View ##
+## Node View
 
 The node view shows the status of each machine running in the CM-Well cluster, and the software components running on it.
 
@@ -78,7 +78,7 @@ The node view is displayed. It contains a table showing each node's IP address, 
 <img src="./_Images/health-detailed-new.png">
 
 <a name="hdr1"></a>
-## JVM Views (for internal TMS use) ##
+## JVM Views (for internal TMS use)
 
 The following views show the health of the JVM processes running on CM-Well nodes.
 

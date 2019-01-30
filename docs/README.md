@@ -1,6 +1,6 @@
 [![Gitter chat](https://badges.gitter.im/CM-Well/CM-Well.svg)](https://gitter.im/CM-Well/CM-Well)
 
-# Introduction #
+# Introduction
 CM-Well is a writable Linked Data repository, developed by [Thomson Reuters](http://www.thomsonreuters.com) & [Refinitiv](http://www.refinitiv.com) and used as its central Knowledge Graph database. CM-Well (Content Matrix Well) adheres to RDF principles, meaning that data is in a [standard](https://www.w3.org/RDF/), machine-readable format.
 
 CM-Well is _not_ a triple store! Our focus is on high scale, immutability of changes and downstream distribution of content. In BI terminology, CM-Well is a [data warehouse](https://en.wikipedia.org/wiki/Data_warehouse),  you might use a triple store downstream as a [data mart](https://en.wikipedia.org/wiki/Data_mart).
@@ -9,7 +9,7 @@ You can read more about the key differentiating features of CM-Well in our [pape
 
 The Refinitiv Knowledge Graph contains information about organizations, instruments and people in the world of finance, but you can use CM-Well for any kind of linked data. Thomson Reuters & Refinitiv are now offering CM-Well as an Open Source platform for the developer community to use and enrich.
 
-## Key Features and Technology ##
+## Key Features and Technology
 CM-Well is based on a clustered architecture, with durable storage into [Apache Cassandra](http://cassandra.apache.org) and indexing via [Elastic Search](https://github.com/elastic/elasticsearch). Key features include:
 * Horizontal scaling to support billions of triples
 * Cross site replication
@@ -28,7 +28,7 @@ Other key technologies used under the covers include:
 * [Zookeeper](https://zookeeper.apache.org) for cluster configuration
 
 
-## Linked Data Repositories ##
+## Linked Data Repositories
 You may be interested in exploring the following open-access linked data repositories and products:
 
 * [Refinitiv PermID financial entities](https://permid.org/)
@@ -41,7 +41,7 @@ You may be interested in exploring the following open-access linked data reposit
 * [Linked Open Data Laundromat](http://lodlaundromat.org)
 * [Web Data Commons](http://webdatacommons.org)
 
-## Further Reading ##
+## Further Reading
 
 Here are some more resources to help you learn about linked data and CM-Well:
 
@@ -50,15 +50,15 @@ Here are some more resources to help you learn about linked data and CM-Well:
 * [Introduction to CM-Well](docs/Intro.IntroductionToCM-Well.md)
 * [Overview of the CM-Well API](docs/Intro.OverviewOfTheCM-WellAPI.md)
 
-# Getting Started #
+# Getting Started
 
-## Basic Write and Read Operations ##
+## Basic Write and Read Operations
 
 You can get started with CM-Well by running some basic write and read operations.
 
 >**Note:** The Curl commands in the examples below assume that CM-Well is running on your local machine.
 
-### Write Infotons and Fields ###
+### Write Infotons and Fields
 
 **Action**: Create 5 new infotons (an infoton is the basic unit of storage for RDF in CM-Well) under the path example/Individuals: MamaBear, PapaBear, BabyBear1, BabyBear2 and BabyBear3. Each bear has a hasName field with a name value.
 
@@ -87,7 +87,7 @@ You can get started with CM-Well by running some basic write and read operations
 
     {"success":true}
 
-### Read Infotons ###
+### Read Infotons
 
 **Action:** Read the infotons you created in the previous step under example/individuals, with associated predicates.
 
@@ -177,11 +177,11 @@ You can get started with CM-Well by running some basic write and read operations
     sys:uuid          "6513a8d6395af8db932f49afb97cbfd1" ;
     foaf:givenName   "Barney" .
 
-## CM-Well Tutorial ##
+## CM-Well Tutorial
 
 See [CM-Well Tutorials](docs/Tutorial.HandsOnExercisesTOC.md) to learn how perform more CM-Well operations.
 
-## Developer Resources ##
+## Developer Resources
 
 See the following resources to learn more about CM-Well workflows, APIs and architecture:
 
@@ -190,9 +190,9 @@ See the following resources to learn more about CM-Well workflows, APIs and arch
 * [CM-Well Data Paradigms](docs/Intro.CM-WellDataParadigms.md)
 * [CM-Well High-Level Architecture](docs/Intro.CM-WellHigh-LevelArchitecture.md)
 
-# System Requirements #
+# System Requirements
 
-## Build Requirements ##
+## Build Requirements
 
 Before building CM-Well, you will need to install the following software packages:
 
@@ -202,14 +202,14 @@ Before building CM-Well, you will need to install the following software package
 
 >**Note** Currently, CM-Well only runs on Mac and Linux environments
 
-## Run Requirements ##
+## Run Requirements
 
 * Java 8
 * Scala 2.11.11
 * 8 GB RAM
 
 <a name="buildcmw"></a>
-# Downloading and Building CM-Well #
+# Downloading and Building CM-Well
 
 To build CM-Well from its code:
 
@@ -225,7 +225,7 @@ export SBT_OPTS="-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -X
 
 More detailed instructions can be found in the [Building CM-Well Tutorial ](docs/Tutorial.Building.md).
 
-## Code Repository Structure ##
+## Code Repository Structure
 
 The following tables describe CM-Well’s code directory structure:
 
@@ -272,7 +272,7 @@ cmwell-ws	 | Web Service (Play! Framework application)
 cmwell-zstore	 | A distributed key/value store, using Cassandra. Used by multiple projects.
 project	 | Build instructions and mechanism (SBT)
 
-# Running CM-Well #
+# Running CM-Well
 
 To run your compiled version of CM-Well:
 
@@ -288,21 +288,21 @@ To run your compiled version of CM-Well:
 
 >**Note**: Once CM-Well is installed, the CM-Well web UI is available at http://localhost:9000. See [CM-Well Web Interface](docs/CM-WellWebInterface.md) to learn more.
 
-# Code Contributions #
+# Code Contributions
 
 If you want to make a contribution to CM-Well's code, either as an individual or as a company or other legal entity, please read, sign and send us the appropriate form (see further instructions inside the forms).
 
 * [CM-Well Individual Contributor License Agreement](docs/CM-Well-Individual-Contributor-License-Agreement-v1.pdf)
 * [CM-Well Entity Contributor License Agreement](docs/CM-Well-Entity-Contributor-License-Agreement-v1.pdf)
 
-# Support #
+# Support
 
-## Reporting Issues ##
+## Reporting Issues
 You can report CM-Well issues at the [CM-Well GitHub Issues Page](https://github.com/CM-Well/CM-Well/issues).
 
-## Discuss ##
+## Discuss
 
 We use [Gitter](https://gitter.im/CM-Well/CM-Well) to talk about CM-Well. Feel free to come join us!
 
-# License #
+# License
 CM-Well is Open Source and available under the Apache 2 License. See the [CM-Well License Page](https://github.com/CM-Well/CM-Well/blob/master/LICENSE) to learn more.

@@ -1,4 +1,4 @@
-# Building CM-Well #
+# Building CM-Well
 
 ----
 
@@ -11,11 +11,11 @@ This tutorial describes how to build CM-Well from scratch. It assumes you don't 
 
 >**Note:** All commands/output shown were tested on a Mac running 10.12.5. Your mileage may vary.
 
-## Prerequisites ##
+## Prerequisites
 
 CM-Well requires the following prerequisite software to install.
 
-### Scala ###
+### Scala
 
 Build and run is quite sensitive to the version of Scala. Currently, we build and test using Scala [2.12.4](https://www.scala-lang.org/download/2.12.4.html).
 
@@ -38,7 +38,7 @@ $ scala -version
 Scala code runner version 2.12.4 -- Copyright 2002-2017, LAMP/EPFL
 ```
 
-### Install Scala Build Tool (SBT) ###
+### Install Scala Build Tool (SBT)
 
 Next we need [SBT](http://www.scala-sbt.org). For this tutorial, we downloaded the [binaries](https://github.com/sbt/sbt/releases/download/v1.1.4/sbt-1.1.4.zip) directly and unzipped alongside the Scala directory. This tutorial was tested with version 1.1.4.
 
@@ -61,7 +61,7 @@ WARN: No sbt.version set in project/build.properties, base directory: /Users/TRn
 [info] Available Plugins: sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.CorePlugin, sbt.plugins.JUnitXmlReportPlugin, sbt.plugins.Giter8TemplatePlugin
 [info] sbt, sbt plugins, and build definitions are using Scala 2.12.4
 ```
-## Installing CM-Well ##
+## Installing CM-Well
 
 >**Note:** On the machine from which you're installing CM-Well, you'll first need to install [Python 2.7](https://www.python.org/download/releases/2.7).
 
@@ -96,7 +96,7 @@ downloading file:////Users/TRNonodename/.sbt/preloaded/org.scala-sbt/sbt/0.13.15
 
 >**Note:** The first build will take some time while SBT downloads all dependencies.
 
-## Running CM-Well ##
+## Running CM-Well
 
 Once you have the server compiled, navigate to the cmwell-cons/app directory and run cmwell.sh
 
@@ -171,7 +171,7 @@ Once the scala prompt returns, CM-Well is running, listening to port 9000. Navig
 
 From here on in, you can use curl to load data per the other tutorials. Note that no data is persisted to this copy beyond a restart of CM-Well.
 
-### Stopping CM-Well ###
+### Stopping CM-Well
 
 To shut CM-Well down, first shutdown CM-Well with pe.stop
 

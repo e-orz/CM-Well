@@ -1,4 +1,4 @@
-# Using CM-Well Downloader #
+# Using CM-Well Downloader
 
 ----
 
@@ -6,7 +6,7 @@
 
 ----
 
-## What is CM-Well Downloader? ##
+## What is CM-Well Downloader?
 CM-Well Downloader is a CM-Well utility for downloading infotons from CM-Well in bulk. You can run CM-Well Downloader as an alternative to calling the CM-Well streaming API from your own application. Using CM-Well Downloader is faster because its design optimizes performance for bulk downloads.
 
 CM-Well Downloader is written in Scala and is packaged as a jar file. You can call the Downloader library from Scala or Java applications, or run the Downloader executable in a command line environment.
@@ -16,7 +16,7 @@ CM-Well Downloader is written in Scala and is packaged as a jar file. You can ca
 > * To compile and run CM-Well data tools, you will need Java version 8.
 > * Graph traversal is **not** supported in streaming operations. If a streaming query contains **xg**, **yg** or **gqp** operators, they will be ignored.
 
-## Stream-Based and Consumer-Based Downloaders ##
+## Stream-Based and Consumer-Based Downloaders
 
 There are two versions of CM-Well Downloader:
 
@@ -25,7 +25,7 @@ There are two versions of CM-Well Downloader:
 
 Both flavors of Downloader can be found in the same library or executable file.  
 
-## Downloading and Compiling CM-Well Source Code ##
+## Downloading and Compiling CM-Well Source Code
 You can download and compile the Downloader source code, to build either the stand-alone Downloader executable or the Downloader library jar.
 
 *To install the Scala Build Tool and download the CM-Well Downloader source code:*
@@ -48,7 +48,7 @@ The resulting shell script executables are created in the ```cmwell-data-tools-a
 
 The resulting `cmwell-downloader_2.12-1.0.LOCAL.jar` file is created in `cmwell-data-tools/cmwell-downloader/target/scala-2.12/`.
 
-## Running the CM-Well Downloader Executable ##
+## Running the CM-Well Downloader Executable
 
 Activate the CM-Well Downloader **stream-based** executable by running: ```cmwell-data-tools-app/target/pack/bin/downloader```.
 
@@ -88,7 +88,7 @@ Here is an example of how to run the stream-based CM-Well Downloader to retrieve
 
     cmwell-data-tools-app/target/pack/bin/downloader --host "cm-well-ppe.int.thomsonreuters.com" --path "/permid.org" --op stream --length 10 --qp "CommonName.mdaas:Thomson,type.rdf:Organization"
 
-## Running CM-Well Downloader in Scala REPL Mode ##
+## Running CM-Well Downloader in Scala REPL Mode
 You can run CM-Well Downloader in the Scala Interpreter (REPL), so you can examine program internals while running.
 
 To do this, run the following command:
@@ -111,7 +111,7 @@ After the console is successfully loaded, execute the Downloader by running the 
 
  > **Note:** The outputHandler argument type is a ```String => ()``` function, which is called when new data is received. You can pass a value of ```print()``` to display on the command line, or provide a customized function (for instance, one that writes the received data to a file).
 
-## Using the CM-Well Downloader Jar ##
+## Using the CM-Well Downloader Jar
 
 For the stream-based Downloader, call the static methods of the `cmwell.tools.data.downloader.streams.Downloader` class (see the method definitions in `cmwell-downloader/src/main/scala/cmwell/tools/data/downloader/streams/Downloader.scala`).
 

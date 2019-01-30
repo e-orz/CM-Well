@@ -1,4 +1,4 @@
-# A Brief CM-Well Docker Tutorial #
+# A Brief CM-Well Docker Tutorial
 
 ----
 
@@ -23,7 +23,7 @@ After installing and running CM-Well Docker, run the following workflows:
 >**Note:** If you're planning to use the Curl command, read [Using the Curl Utility to Call CM-Well](DevGuide.CurlUtility.md).
 
 <a name="hdr1"></a>
-## 1. Add some infotons and their fields ##
+## 1. Add some infotons and their fields
 
 **Action:** Create 5 new infotons under the path example/Individuals: MamaBear, PapaBear, BabyBear1, BabyBear2 and BabyBear3. Each bear has a **hasName** field with a name value.
 
@@ -53,7 +53,7 @@ After installing and running CM-Well Docker, run the following workflows:
     {"success":true}
 
 <a name="hdr2"></a>
-## 2. Read the infotons you wrote ##
+## 2. Read the infotons you wrote
 
 **Action:** Read all infotons under example/Individuals, with their fields.
 
@@ -142,7 +142,7 @@ After installing and running CM-Well Docker, run the following workflows:
         bermuda:hasName   "Barney" .
 
 <a name="hdr3"></a>
-## 3. Query for infotons by field values ##
+## 3. Query for infotons by field values
 
 **Action:** Read all infotons under example/Individuals that have a childOf relationship to PapaBear.
 
@@ -201,7 +201,7 @@ After installing and running CM-Well Docker, run the following workflows:
         sys:uuid          "1627fe787d44b5a4fff19f50181b585b" .
 
 <a name="hdr4"></a>
-## 4. Update field values ##
+## 4. Update field values
 
 **Action:** Change all Baby Bear names.
 
@@ -223,7 +223,7 @@ After installing and running CM-Well Docker, run the following workflows:
     {"success":true}
 
 <a name="hdr5"></a>
-## 5. Read the changed infotons and verify that their fields were updated ##
+## 5. Read the changed infotons and verify that their fields were updated
 
 **Action:** Read the Baby Bear infotons and verify that their fields were updated.
 
@@ -290,7 +290,7 @@ After installing and running CM-Well Docker, run the following workflows:
         rel:siblingOf     <http://example/Individuals/BabyBear2> , <http://example/Individuals/BabyBear3> .
 
 <a name="hdr6"></a>
-## 6. Delete some infotons and fields ##
+## 6. Delete some infotons and fields
 
 **Action:** Delete the BabyBear3 infoton, and delete BabyBear1's siblingOf field.
 
@@ -308,7 +308,7 @@ After installing and running CM-Well Docker, run the following workflows:
     {"success":true}
 
 <a name="hdr7"></a>
-## 7. Read the infotons again and verify the deletions ##
+## 7. Read the infotons again and verify the deletions
 
 **Action:** Read the Baby Bear infotons again and verify the deletions.
 
@@ -363,7 +363,7 @@ After installing and running CM-Well Docker, run the following workflows:
         bermuda:hasName       "Cathy" ;
         relationship:childOf  <http://example/Individuals/MamaBear> , <http://example/Individuals/PapaBear> .
 
-## API Reference ##
+## API Reference
 * [Add Infotons and Fields](API.Update.AddInfotonsAndFields.md)
 * [Delete Multiple Infotons](API.Update.DeleteMultipleInfotons.md)
 * [Delete Fields](API.Update.DeleteFields.md)

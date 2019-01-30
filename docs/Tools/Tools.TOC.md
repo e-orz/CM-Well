@@ -1,4 +1,4 @@
-# CM-Well Tools #
+# CM-Well Tools
 
 ----
 
@@ -6,11 +6,11 @@
 
 ----
 
-## CM-Well Docker ##
+## CM-Well Docker
 
 You can install and run a private instance of CM-Well by using the Docker utility and accompanying CM-Well package. See [Using CM-Well Docker](Tools.UsingCM-WellDocker.md) to learn more.
 
-## CM-Well Downloader and Ingester ##
+## CM-Well Downloader and Ingester
 
 There are two ready-made utilities that you can use to download or upload data from/to CM-Well in bulk. You can run them as stand-alone executables, call their jar files from your own application, or copy their source as a starting point for your application.
 

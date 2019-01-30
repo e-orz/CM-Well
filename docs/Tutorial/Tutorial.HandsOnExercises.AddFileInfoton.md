@@ -1,4 +1,4 @@
-# Hands-On Exercise: Add a File Infoton #
+# Hands-On Exercise: Add a File Infoton
 
 ----
 
@@ -18,7 +18,7 @@
 
     {"success":true}
 
-## Host an HTML page in CM-Well ##
+## Host an HTML page in CM-Well
 
 Beyond hosting blob files like an image, CM-Well will also serve full HTML files (in fact, the CM-Well UI is hosted under the /meta URI structure and served using this method).
 
@@ -43,7 +43,7 @@ Now navigate to the page in your browser:
 
 Two more complex examples, a [query builder](./examples/search_builder.html), and a [D3 integration](./examples/visualizer/index.html), can be found in the examples directory.
 
-## API Reference ##
+## API Reference
 [Add File Infoton](API.Update.AddFileInfoton.md)
 
 

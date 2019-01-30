@@ -1,4 +1,4 @@
-# Hands-On Exercise: Add Infotons and Fields #
+# Hands-On Exercise: Add Infotons and Fields
 
 ----
 
@@ -33,7 +33,7 @@
 
     {"success":true}
 
-## API Reference ##
+## API Reference
 [Add Infotons and Fields](API.Update.AddInfotonsAndFields.md)
     
 

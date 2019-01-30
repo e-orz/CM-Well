@@ -1,4 +1,4 @@
-# Hands-On Exercise: Work with Sub-Graphs #
+# Hands-On Exercise: Work with Sub-Graphs
 
 ----
 
@@ -7,14 +7,14 @@
 ----
 
 
-## Step Outline ##
+## Step Outline
 
 1. [Add Quad Values](#hdr1).
 2. [Replace Quad Values](#hdr2)
 3. [Delete Quad Values](#hdr3).
 
 <a name="hdr1"></a>
-## 1. Add Quad Values ##
+## 1. Add Quad Values
 
 **Action:** Add 3 movie infotons, with critic scores from Rotten Tomatoes and New York Times.
 
@@ -39,7 +39,7 @@
     {"success":true}
     
 <a name="hdr2"></a>
-## 2. Replace Quad Values ##
+## 2. Replace Quad Values
 
 **Action:** Change all New York Times scores to 10.
 
@@ -59,7 +59,7 @@
     {"success":true}
    
 <a name="hdr3"></a>
-## 3. Delete Quad Values ##
+## 3. Delete Quad Values
 
 **Action:** Delete all Rotten Tomatoes scores.
 
@@ -77,7 +77,7 @@
 
     {"success":true}
 
-## API Reference ##
+## API Reference
 [Add Infotons and Fields to Sub-Graph](API.Update.AddInfotonsAndFieldsToSubGraph.md)
 [Delete or Replace Values in Named Sub-Graph](API.Update.DeleteOrReplaceValuesInNamedSubGraph.md)
 
