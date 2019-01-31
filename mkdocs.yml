@@ -31,7 +31,7 @@ markdown_extensions:
       permalink: true  
 nav:
   - Home:
-    - qq: README.md
+    - qq: index.md
     - Bug Tracker: https://github.com/CM-Well/CM-Well/issues
     - ReleaseNotes:
       - ReleaseNotes/ReleaseNotes.Amoeba.Feb.2017.md
