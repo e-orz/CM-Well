@@ -88,7 +88,7 @@ object AddProtocolField extends StdInIterator with EsFutureHelpers {
       injectFuture[BulkResponse](request.execute).flatMap {
         case br if !br.hasFailures => Future.successful(br)
         case _ if retry < maxRetries => SimpleScheduler.scheduleFuture(retryDelay) {
-            esClientExecWithRetries(uuid, request, retry + 1)
+          esClientExecWithRetries(uuid, request, retry + 1)
         }
         case br => Future.failed(new RuntimeException(s"After $maxRetries retries: " + br.buildFailureMessage()))
       }
@@ -96,19 +96,33 @@ object AddProtocolField extends StdInIterator with EsFutureHelpers {
 
     Console.err.println("\n\n >>> Executing...")
     iterateStdinInChunksShowingProgress { uuid =>
-      insertExecutor.exec(uuid).zip(selectExecutor.exec(uuid).map(getString)).flatMap { case (_,  indexName) =>
+      insertExecutor.exec(uuid).zip(selectExecutor.exec(uuid).map(getString)).flatMap { case (_, indexName) =>
         val request = esRequest(indexName, uuid)
         esClientExecWithRetries(uuid, request)
       }.andThen {
         case Success(_) => println(s" >>> $uuid OK")
         case Failure(t) => println(s" >>> $uuid ERROR: $t")
       }
-    }(conf.j())(ec).onComplete { _ =>
-      Console.err.println(" >>> Done, closing connections in 16 seconds from now...\n")
-      Thread.sleep(16000)
-      dao.shutdown()
-      esClient.close()
-      sys.exit(0)
+    }(conf.j())(ec).onComplete {
+      case Failure(e) =>
+        import java.io.PrintWriter
+        import java.io.StringWriter
+        val sw = new StringWriter
+        val pw = new PrintWriter(sw)
+        e.printStackTrace(pw)
+        val sStackTrace = sw.toString
+        Console.err.println(" >>> Finished with an error, closing connections in 16 seconds from now...\n")
+        Console.err.println(s" >>> stack trace: $sStackTrace")
+        Thread.sleep(16000)
+        dao.shutdown()
+        esClient.close()
+        sys.exit(1)
+      case Success(_) =>
+        Console.err.println(" >>> Done, closing connections in 16 seconds from now...\n")
+        Thread.sleep(16000)
+        dao.shutdown()
+        esClient.close()
+        sys.exit(0)
     }
   }
 }
@@ -248,7 +262,7 @@ trait StdInIterator {
 
     processChunk.onComplete { _ =>
       timer.cancel()
-      Console.err.println(s" >>> $c items processed")
+      Console.err.println(s" >>> $c items processed - in onComplete")
     }
     processChunk
   }
