@@ -581,6 +581,7 @@ class DataCenterSyncManager(dstServersVec: Vector[(String, Option[Int])],
             sb ++= "&index-time="
             sb ++= t.toString
           }
+          Settings.createConsumeLengthHint.foreach(lh => sb ++= s"&length-hint=$lh")
           sb.result()
         }
         logger.info(s"The get position key request for data center ID $dataCenterId is: $requestUri")

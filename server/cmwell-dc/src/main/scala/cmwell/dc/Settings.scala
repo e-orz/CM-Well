@@ -40,6 +40,10 @@ object Settings {
 //  val tsvBufferSize = config.getInt("cmwell.dc.pull.tsvBufferSize")
   val initialTsvRetryCount = config.getInt("cmwell.dc.pull.initialTsvRetryCount")
   val bulkTsvRetryCount = config.getInt("cmwell.dc.pull.bulkTsvRetryCount")
+  val createConsumeLengthHint = config.hasPath("cmwell.dc.pull.createConsumeLengthHint") match {
+    case true => Some(config.getInt("cmwell.dc.pull.createConsumeLengthHint"))
+    case false => None
+  }
   val consumeFallbackDuration = config.getDuration("cmwell.dc.pull.consumeFallbackDuration").toMillis
 //  val delayInSecondsBetweenNoContentRetries = config.getInt("cmwell.dc.pull.delayInSecondsBetweenNoContentRetries")
   val retrieveParallelism = config.getInt("cmwell.dc.pull.retrieveParallelism")
