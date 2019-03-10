@@ -219,7 +219,7 @@ object TsvRetriever extends LazyLogging {
             val bulkPrefix = extractPrefixes(currentState)
             val request = HttpRequest(
               uri =
-                s"http://${dcInfo.location}/?op=${bulkPrefix}consume&format=tsv&position=$positionKey",
+                s"http://${dcInfo.location}/?op=${bulkPrefix}consume&format=tsv&without-last-modified&position=$positionKey",
               headers = scala.collection.immutable.Seq(gzipAcceptEncoding)
             )
             logger.info(
