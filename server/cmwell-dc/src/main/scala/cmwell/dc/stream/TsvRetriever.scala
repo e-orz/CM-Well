@@ -176,6 +176,11 @@ object TsvRetriever extends LazyLogging {
     case ConsumeState(Consume, _)     => ""
   }
 
+  private def parallelismParameter(state: ConsumeState) = state match {
+    case ConsumeState(BulkConsume, _) => Settings.bulkTsvParallelism.fold("")(p => s"&parallelism=$p")
+    case ConsumeState(Consume, _)     => ""
+  }
+
   private def getNewState(elementState: TsvRetrieveState,
                           lastUsedState: ConsumeState) =
     // If there were an error before - take the state as it came from the retry decider.
@@ -217,9 +222,10 @@ object TsvRetriever extends LazyLogging {
           case (positionKey, state) =>
             currentState = getNewState(state, currentState)
             val bulkPrefix = extractPrefixes(currentState)
+            val parallelism = parallelismParameter(currentState)
             val request = HttpRequest(
               uri =
-                s"http://${dcInfo.location}/?op=${bulkPrefix}consume&format=tsv&without-last-modified&position=$positionKey",
+                s"http://${dcInfo.location}/?op=${bulkPrefix}consume&format=tsv&without-last-modified$parallelism&position=$positionKey",
               headers = scala.collection.immutable.Seq(gzipAcceptEncoding)
             )
             logger.info(

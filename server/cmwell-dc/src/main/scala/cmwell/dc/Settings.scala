@@ -44,6 +44,10 @@ object Settings {
     case true => Some(config.getInt("cmwell.dc.pull.createConsumeLengthHint"))
     case false => None
   }
+  val bulkTsvParallelism = config.hasPath("cmwell.dc.pull.bulkTsvParallelism") match {
+    case true => Some(config.getInt("cmwell.dc.pull.bulkTsvParallelism"))
+    case false => None
+  }
   val consumeFallbackDuration = config.getDuration("cmwell.dc.pull.consumeFallbackDuration").toMillis
 //  val delayInSecondsBetweenNoContentRetries = config.getInt("cmwell.dc.pull.delayInSecondsBetweenNoContentRetries")
   val retrieveParallelism = config.getInt("cmwell.dc.pull.retrieveParallelism")
