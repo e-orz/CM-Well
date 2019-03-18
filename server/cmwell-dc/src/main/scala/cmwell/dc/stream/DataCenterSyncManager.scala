@@ -887,11 +887,10 @@ class DataCenterSyncManager(dstServersVec: Vector[(String, Option[Int])],
                    s" in local decider. It inner stream will be stopped (the whole one may continue). The exception is:", e)
       Supervision.Stop
     }
-    val tsvSource = dcInfo.tsvFile.fold(
-      TsvRetriever(dcInfo, localDecider).mapConcat(identity)
-    )(_ => TsvRetrieverFromFile(dcInfo))
+    val tsvSource = dcInfo.tsvFile.fold(TsvRetriever(dcInfo, localDecider).mapConcat(identity))(_ => TsvRetrieverFromFile(dcInfo))
+    val tsvSourceWithBuffer = tsvSource.buffer(1, OverflowStrategy.backpressure)
     val syncingEngine: RunnableGraph[SyncerMaterialization] =
-      tsvSource
+      tsvSourceWithBuffer
       //        .buffer(Settings.tsvBufferSize, OverflowStrategy.backpressure)
       .async
         .via(
