@@ -888,7 +888,7 @@ class DataCenterSyncManager(dstServersVec: Vector[(String, Option[Int])],
       Supervision.Stop
     }
     val tsvSource =
-      dcInfo.tsvFile.fold(TsvRetriever(dcInfo, localDecider).buffer(1, OverflowStrategy.backpressure).mapConcat(identity))(_ => TsvRetrieverFromFile(dcInfo))
+      dcInfo.tsvFile.fold(TsvRetriever(dcInfo, localDecider).buffer(2, OverflowStrategy.backpressure).mapConcat(identity))(_ => TsvRetrieverFromFile(dcInfo))
     val syncingEngine: RunnableGraph[SyncerMaterialization] =
       tsvSource
       //        .buffer(Settings.tsvBufferSize, OverflowStrategy.backpressure)
