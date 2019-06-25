@@ -28,7 +28,13 @@ object MessagesTypesAndExceptions {
     override def toString: String =
       s"[id: $id, location: $location, transformations: ${transformations.mkString("(", ",", ")")}]"
   }
+
+  abstract sealed class DcInfoExtra
+  case class LielDcInfoExtra(moshe: String, david: Int)
+
   case class DcInfo(key: DcInfoKey,
+                    `type`: String,
+                    dcInfoExtra: DcInfoExtra,
                     idxTime: Option[Long] = None,
                     positionKey: Option[String] = None,
                     tsvFile: Option[String] = None)

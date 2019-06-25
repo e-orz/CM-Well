@@ -15,17 +15,11 @@
 package cmwell.dc.stream
 
 import akka.actor.SupervisorStrategy.Stop
-import akka.actor.{
-  Actor,
-  ActorSystem,
-  Cancellable,
-  OneForOneStrategy,
-  Props,
-  Status
-}
+import akka.actor.{Actor, ActorSystem, Cancellable, OneForOneStrategy, Props, Status}
 import akka.event.{BusLogging, Logging}
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{HttpRequest, HttpResponse}
+import akka.stream.OverflowStrategies.Backpressure
 import akka.stream._
 import akka.stream.scaladsl.{Flow, Framing, Keep, RunnableGraph, Sink, Source}
 import akka.util.ByteString
@@ -810,6 +804,22 @@ class DataCenterSyncManager(dstServersVec: Vector[(String, Option[Int])],
     val tsvSource = dcInfo.tsvFile.fold(
       TsvRetriever(dcInfo, localDecider).mapConcat(identity)
     )(_ => TsvRetrieverFromFile(dcInfo))
+
+    val boom = Flow[InfotonData]
+      .map(_ => "this is the filter")
+      .scan(Set.empty[String])((total, element) => total.+(element))
+      .filter(_.nonEmpty)
+      .mapConcat(identity)
+      .mapAsync(10) {_ =>
+        Future("yaron")
+          .recover {
+            case e => "flag"
+          }
+      }
+      .filter(_!="flag")
+      .map(_ => "change to rdf")
+      .map(e => InfotonData())
+
     val infotonDataTransformer: InfotonData => InfotonData = Util.createInfotonDataTransformer(dcInfo)
     val syncingEngine: RunnableGraph[SyncerMaterialization] =
       tsvSource
@@ -821,6 +831,7 @@ class DataCenterSyncManager(dstServersVec: Vector[(String, Option[Int])],
         .via(RatePrinter(dcInfo.key, bucket => bucket.size, "elements", "infoton TSVs from InfotonAggregator", 500))
         .via(ConcurrentFlow(Settings.retrieveParallelism)(InfotonRetriever(dcInfo.key, localDecider)))
         .mapConcat(identity)
+      .via(boom)
         .async
         .via(RatePrinter(dcInfo.key, _.data.size / 1000D, "KB", "KB infoton Data from InfotonRetriever", 5000))
         .map(infotonDataTransformer)
