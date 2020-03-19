@@ -1,5 +1,5 @@
 /**
-  * Copyright 2015 Thomson Reuters
+  * © 2019 Refinitiv. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.
   * You may obtain a copy of the License at
@@ -28,6 +28,7 @@ import akka.util.{ByteString, ByteStringBuilder}
 import cmwell.dc.Settings.config
 import cmwell.dc.{LazyLogging, Settings, stream}
 import cmwell.dc.stream.MessagesTypesAndExceptions._
+import cmwell.dc.stream.SingleMachineInfotonIngester.IngestInput
 import com.typesafe.config.ConfigFactory
 
 import scala.concurrent.Future
